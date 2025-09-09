@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('tenaga_kerjas', function (Blueprint $table) {
             $table->id();
+            $table->string('photo');
+            $table->string('name');
+            $table->text('description');
+            $table->string('position');
+            $table->enum('is_active', ['active', 'no_active']);
             $table->timestamps();
         });
     }

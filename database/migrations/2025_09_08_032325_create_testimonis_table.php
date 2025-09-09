@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('testimonis', function (Blueprint $table) {
             $table->id();
+            $table->string('photo_profile');
+            $table->string('name');
+            $table->text('description');
+            $table->float('rating', 3,2);
+            $table->enum('is_active', ['active', 'no_active']);
             $table->timestamps();
         });
     }
