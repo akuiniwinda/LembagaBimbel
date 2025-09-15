@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
+            $table->string('photo');
+            $table->string('name');
+            $table->text('description');
+            $table->enum('is_active', ['active', 'no_active']);
             $table->timestamps();
         });
     }
