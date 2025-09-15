@@ -27,28 +27,30 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="border-bottom-0">
-                          <img src="{{ asset('assetsbackend/images/backgrounds/hero-1.jpg') }}" width="100">
-                        </td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">Get Your EDUCATION Today From Your Home</h6>
-                        </td>
-                        <td class="border-bottom-0">
-                          <div class="d-flex align-items-center gap-2" >
-                            <div class="form-check form-switch float-left">
-                                <input class="form-check-input" type="checkbox" id="status" name="status">
-                            </div>
-                          </div>
-                        </td>
-                        <td class="border-bottom-0">
-                          <div class="d-flex align-items-center gap-2">
-                            <a class="badge bg-success rounded-3 fw-semibold">Edit</a>
-                            <a class="badge bg-danger rounded-3 fw-semibold">Delete</a>
-                          </div>
-                        </td>
-                      </tr>
-                      </tr>
+                        @foreach ($heros as $hiro)
+                            <tr>
+                                <td class="border-bottom-0">
+                                <img src="{{asset('storage/'.$hiro->photo)}}" width="100">
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">{{$hiro->title}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                <div class="d-flex align-items-center gap-2" >
+                                    <div class="form-check form-switch float-left custom-switch">
+                                        <input class="form-check-input" type="checkbox" id="status" name="status">
+                                    </div>
+                                </div>
+                                </td>
+                                <td class="border-bottom-0">
+                                <div class="d-flex align-items-center gap-2">
+                                    <a class="badge bg-success rounded-3 fw-semibold" href="/adminpanel/hero/edit/{{$hiro->id}}">Edit</a>
+                                    <a class="badge bg-danger rounded-3 fw-semibold" href="/adminpanel/hero/delete/{{$hiro->id}}">Delete</a>
+                                </div>
+                                </td>
+                                </tr>
+                            </tr>
+                        @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -56,6 +58,6 @@
             </div>
           </div>
         </div>
-
-      </div>
+        <a href="/adminpanel/hero/create" class="btn btn-elearning m-1 btn-custom">Tambah data</a>
+    </div>
 @endsection

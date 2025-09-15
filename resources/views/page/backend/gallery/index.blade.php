@@ -7,7 +7,7 @@
           <div class="col-lg-12 d-flex align-items-stretch">
             <div class="card w-100">
               <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Recent Hero</h5>
+                <h5 class="card-title fw-semibold mb-4">Recent About</h5>
                 <div class="table-responsive">
                   <table class="table text-nowrap mb-0 align-middle">
                     <thead class="text-dark fs-4">
@@ -19,6 +19,9 @@
                           <h6 class="fw-semibold mb-0">Tittle</h6>
                         </th>
                         <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Description</h6>
+                        </th>
+                        <th class="border-bottom-0">
                           <h6 class="fw-semibold mb-0">Status</h6>
                         </th>
                         <th class="border-bottom-0">
@@ -27,23 +30,33 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
-                            <span class="fw-normal">Web Designer</span>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">Elite Admin</p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <div class="d-flex align-items-center gap-2">
-                            <a class="badge bg-success rounded-3 fw-semibold">Edit</a>
-                            <a class="badge bg-danger rounded-3 fw-semibold">Delete</a>
-                          </div>
-                        </td>
-                      </tr>
-                      </tr>
+                        @foreach ($gallerys as $galleri)
+                            <tr>
+                                <td class="border-bottom-0">
+                                <img src="{{asset('storage/'.$galleri->photo)}}" width="100">
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">{{$galleri->title}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">{{$galleri->description}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                <div class="d-flex align-items-center gap-2" >
+                                    <div class="form-check form-switch float-left custom-switch">
+                                        <input class="form-check-input" type="checkbox" id="status" name="status">
+                                    </div>
+                                </div>
+                                </td>
+                                <td class="border-bottom-0">
+                                <div class="d-flex align-items-center gap-2">
+                                    <a class="badge bg-success rounded-3 fw-semibold" href="/adminpanel/gallery/edit/{{$galleri->id}}">Edit</a>
+                                    <a class="badge bg-danger rounded-3 fw-semibold" href="/adminpanel/gallery/delete/{{$galleri->id}}">Delete</a>
+                                </div>
+                                </td>
+                                </tr>
+                            </tr>
+                        @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -51,6 +64,6 @@
             </div>
           </div>
         </div>
-
-      </div>
+        <a href="/adminpanel/gallery/create" class="btn btn-elearning m-1 btn-custom">Tambah data</a>
+    </div>
 @endsection

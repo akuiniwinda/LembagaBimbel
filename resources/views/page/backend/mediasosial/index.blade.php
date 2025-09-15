@@ -7,7 +7,7 @@
           <div class="col-lg-12 d-flex align-items-stretch">
             <div class="card w-100">
               <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Recent Tenaga Kerja</h5>
+                <h5 class="card-title fw-semibold mb-4">Recent About</h5>
                 <div class="table-responsive">
                   <table class="table text-nowrap mb-0 align-middle">
                     <thead class="text-dark fs-4">
@@ -22,9 +22,6 @@
                           <h6 class="fw-semibold mb-0">Description</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Position</h6>
-                        </th>
-                        <th class="border-bottom-0">
                           <h6 class="fw-semibold mb-0">Status</h6>
                         </th>
                         <th class="border-bottom-0">
@@ -33,19 +30,16 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tenagakerjas as $tenagakerja)
+                        @foreach ($servics as $servs)
                             <tr>
                                 <td class="border-bottom-0">
-                                <img src="{{asset('storage/'.$tenagakerja->photo)}}" width="100">
+                                <img src="{{asset('storage/'.$servs->photo)}}" width="100">
                                 </td>
                                 <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-1">{{$tenagakerja->name}}</h6>
+                                    <h6 class="fw-semibold mb-1">{{$servs->title}}</h6>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-1">{{$tenagakerja->description}}</h6>
-                                </td>
-                                <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-1">{{$tenagakerja->position}}</h6>
+                                    <h6 class="fw-semibold mb-1">{{$servs->description}}</h6>
                                 </td>
                                 <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2" >
@@ -56,8 +50,8 @@
                                 </td>
                                 <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2">
-                                    <a class="badge bg-success rounded-3 fw-semibold" href="/adminpanel/tenagakerja/edit/{{$tenagakerja->id}}">Edit</a>
-                                    <a class="badge bg-danger rounded-3 fw-semibold" href="/adminpanel/tenagakerja/delete/{{$tenagakerja->id}}">Delete</a>
+                                    <a class="badge bg-success rounded-3 fw-semibold" href="/adminpanel/service/edit/{{$servs->id}}">Edit</a>
+                                    <a class="badge bg-danger rounded-3 fw-semibold" href="/adminpanel/service/delete/{{$servs->id}}">Delete</a>
                                 </div>
                                 </td>
                                 </tr>
@@ -70,6 +64,6 @@
             </div>
           </div>
         </div>
-        <a href="/adminpanel/tenagakerja/create" class="btn btn-elearning m-1 btn-custom">Tambah data</a>
+        <a href="/adminpanel/service/create" class="btn btn-elearning m-1 btn-custom">Tambah data</a>
     </div>
 @endsection

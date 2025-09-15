@@ -5,8 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>eLearning Admin</title>
-  <link rel="shortcut icon" type="image/png" href="{{ asset('assetsbackend/images/logos/favicon.png') }}" />
+  <link rel="shortcut icon" type="image/png" href="{{ asset('assetsbackend/images/logos/logo-buku.svg') }}" />
   <link rel="stylesheet" href="{{ asset('assetsbackend/css/styles.min.css') }}" />
+  @include('layout.backend.style')
 </head>
 
 <body>
