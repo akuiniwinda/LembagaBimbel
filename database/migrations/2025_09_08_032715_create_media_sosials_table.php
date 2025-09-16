@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('link');
             $table->string('nameaccount');
             $table->string('namemediasocial');
+            $table->enum('is_active', ['active', 'no_active']);
             $table->timestamps();
         });
     }
