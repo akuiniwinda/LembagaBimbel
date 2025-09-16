@@ -16,10 +16,13 @@
                           <h6 class="fw-semibold mb-0">Photo</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Name</h6>
+                          <h6 class="fw-semibold mb-0">Link</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Description</h6>
+                          <h6 class="fw-semibold mb-0">Name Account</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Name Media Sosial</h6>
                         </th>
                         <th class="border-bottom-0">
                           <h6 class="fw-semibold mb-0">Status</h6>
@@ -30,16 +33,19 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($servics as $servs)
+                        @foreach ($medsos as $medsoses)
                             <tr>
                                 <td class="border-bottom-0">
-                                <img src="{{asset('storage/'.$servs->photo)}}" width="100">
+                                <img src="{{asset('storage/'.$medsoses->photo)}}" width="100">
                                 </td>
                                 <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-1">{{$servs->title}}</h6>
+                                    <h6 class="fw-semibold mb-1">{{$medsoses->link}}</h6>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-1">{{$servs->description}}</h6>
+                                    <h6 class="fw-semibold mb-1">{{$medsoses->nameaccount}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">{{$medsoses->namemediasosial}}</h6>
                                 </td>
                                 <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2" >
@@ -50,8 +56,8 @@
                                 </td>
                                 <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2">
-                                    <a class="badge bg-success rounded-3 fw-semibold" href="/adminpanel/service/edit/{{$servs->id}}">Edit</a>
-                                    <a class="badge bg-danger rounded-3 fw-semibold" href="/adminpanel/service/delete/{{$servs->id}}">Delete</a>
+                                    <a class="badge bg-success rounded-3 fw-semibold" href="/adminpanel/mediasosial/edit/{{$medsoses->id}}">Edit</a>
+                                    <a class="badge bg-danger rounded-3 fw-semibold" href="/adminpanel/mediasosial/delete/{{$medsoses->id}}">Delete</a>
                                 </div>
                                 </td>
                                 </tr>
@@ -64,6 +70,6 @@
             </div>
           </div>
         </div>
-        <a href="/adminpanel/service/create" class="btn btn-elearning m-1 btn-custom">Tambah data</a>
+        <a href="/adminpanel/mediasosial/create" class="btn btn-elearning m-1 btn-custom">Tambah data</a>
     </div>
 @endsection

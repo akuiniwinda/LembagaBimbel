@@ -8,12 +8,21 @@ use App\Http\Controllers\Backend\GalleryBackendController;
 use App\Http\Controllers\Backend\PartnerBackendController;
 use App\Http\Controllers\Backend\ServiceBackendController;
 use App\Http\Controllers\Backend\TestimoniBackendController;
+use App\Http\Controllers\Frontend\LandingFrontendController;
+use App\Http\Controllers\Backend\MediaSosialBackendController;
 use App\Http\Controllers\Backend\TenagaKerjaBackendController;
 use App\Http\Controllers\Backend\AuthenticationBackendController;
 
+
+//Frontend
+//landingpage
+Route::get('/', [LandingFrontendController::class, 'index']);
+
+
 //Backend
 //Authentication
-Route::get('/adminpanel/login', [AuthenticationBackendController::class, 'index']);
+Route::get('/adminpanel', [AuthenticationBackendController::class, 'index']);
+Route::post('/adminpanel/login', [AuthenticationBackendController::class, 'login']);
 
 //Hero
 Route::get('/adminpanel/hero', [HeroBackendController::class, 'index']);
@@ -71,10 +80,18 @@ Route::get('/adminpanel/tenagakerja/delete/{id}', [TenagaKerjaBackendController:
 Route::get('/adminpanel/tenagakerja/edit/{id}', [TenagaKerjaBackendController::class,'edit']);
 Route::post('/adminpanel/tenagakerja/update/{id}', [TenagaKerjaBackendController::class, 'update']);
 
-//partner
+//partner - belum
 Route::get('/adminpanel/partner', [PartnerBackendController::class, 'index']);
 Route::get('/adminpanel/partner/create', [PartnerBackendController::class,'create']);
 Route::post('/adminpanel/partner/store', [PartnerBackendController::class,'store']);
 Route::get('/adminpanel/partner/delete/{id}', [PartnerBackendController::class, 'destroy']);
 Route::get('/adminpanel/partner/edit/{id}', [PartnerBackendController::class,'edit']);
 Route::post('/adminpanel/partner/update/{id}', [PartnerBackendController::class, 'update']);
+
+//media sosial - belum
+Route::get('/adminpanel/mediasosial', [MediaSosialBackendController::class, 'index']);
+Route::get('/adminpanel/mediasosial/create', [MediaSosialBackendController::class,'create']);
+Route::post('/adminpanel/mediasosial/store', [MediaSosialBackendController::class,'store']);
+Route::get('/adminpanel/mediasosial/delete/{id}', [MediaSosialBackendController::class, 'destroy']);
+Route::get('/adminpanel/mediasosial/edit/{id}', [MediaSosialBackendController::class,'edit']);
+Route::post('/adminpanel/mediasosial/update/{id}', [MediaSosialBackendController::class, 'update']);

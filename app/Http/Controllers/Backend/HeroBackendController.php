@@ -32,6 +32,12 @@ class HeroBackendController extends Controller
         //upload foto
         $datahero_store['photo'] = $request->file('photo')->store('imghero', 'public');
 
+        // Tentukan status aktif berdasarkan checkbox
+        // Checkbox jika dicentang akan mengirimkan 'on', jika tidak maka null
+        $isActive = $request->has('status') ? 'active' : 'no_active';
+
+
+
         Hero::create($datahero_store);
 
         return redirect('/adminpanel/hero');
