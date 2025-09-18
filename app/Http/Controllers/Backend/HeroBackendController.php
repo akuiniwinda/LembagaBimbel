@@ -21,12 +21,14 @@ class HeroBackendController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'photo'       => 'required |image|mimes:jpeg,png,jpg,gif',
-            'title'       => 'required'
+            'photo'       => 'required|image|mimes:jpeg,png,jpg,gif',
+            'title'       => 'required',
+            'is_active'   => 'nullable|in:active,no_active'
         ]);
 
         $datahero_store = [
-            'title'       => $request->title
+            'title'       => $request->title,
+            'is_active'   => $request->has('status') ? 'active' : 'no_active',
         ];
 
         //upload foto
@@ -87,8 +89,9 @@ class HeroBackendController extends Controller
     public function update(Request $request, $id){
         //validasi data
         $request->validate([
-            'photo'       => 'required |image|mimes:jpeg,png,jpg,gif',
-            'title'       => 'required'
+            'photo'       => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'title'       => 'required',
+            'is_active'   => 'nullable|in:active,no_active'
         ]);
 
         //cari apakah ada user di tabel yang akan di update cari berdasarkan id
@@ -96,7 +99,8 @@ class HeroBackendController extends Controller
 
         //siapkan data yang akan disiampan sebagai update
         $datahero_update = [
-            'title'                 => $request->title,
+            'title'       => $request->title,
+            'is_active'   => $request->has('status') ? 'active' : 'no_active',
         ];
 
         if ($request->hasFile('photo')){
@@ -113,4 +117,17 @@ class HeroBackendController extends Controller
         //simpan data ke halaman beranda
         return redirect('/adminpanel/hero');
     }
+
+    public function toggleActive(Request $request, $id)
+    {
+        $hero = Hero::findOrFail($id);
+        $hero->is_active = $request->status == 1 ? 'active' : 'inactive';
+        $hero->save();
+
+        return response()->json([
+            'success'   => true,
+            'is_active' => $hero->is_active
+        ]);
+    }
+
 }

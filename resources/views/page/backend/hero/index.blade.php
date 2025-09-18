@@ -38,7 +38,7 @@
                                 <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2" >
                                     <div class="form-check form-switch float-left custom-switch">
-                                        <input class="form-check-input" type="checkbox" id="status" name="status">
+                                        <input class="form-check-input" type="checkbox" id="is_active_{{$hiro->id}}" name="is_active" {{ $hiro->is_active === 'active' ? 'checked' : '' }} data-id="{{ $hiro->id }}">
                                     </div>
                                 </div>
                                 </td>
@@ -60,4 +60,30 @@
         </div>
         <a href="/adminpanel/hero/create" class="btn btn-elearning m-1 btn-custom">Tambah data</a>
     </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".toggle-status").forEach(toggle => {
+                toggle.addEventListener("change", function() {
+                    let heroId = this.dataset.id;
+                    let status = this.checked ? 1 : 0;
+
+                    fetch(/adminpanel/hero/toggle-active/${heroId}, {
+                            method: "POST",
+                            headers: {
+                                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                status: status
+                            })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log("Status updated:", data);
+                        })
+                        .catch(err => console.error("Error:", err));
+                });
+            });
+        });
+    </script>
 @endsection

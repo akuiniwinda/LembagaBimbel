@@ -45,7 +45,7 @@
                                     <h6 class="fw-semibold mb-1">{{$medsoses->nameaccount}}</h6>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-1">{{$medsoses->namemediasosial}}</h6>
+                                    <h6 class="fw-semibold mb-1">{{$medsoses->namemediasocial}}</h6>
                                 </td>
                                 <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2" >

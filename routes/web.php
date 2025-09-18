@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\HeroBackendController;
 use App\Http\Controllers\Backend\AboutBackendController;
+use App\Http\Controllers\Frontend\HeroFrontendController;
 use App\Http\Controllers\Backend\ContactBackendController;
 use App\Http\Controllers\Backend\GalleryBackendController;
 use App\Http\Controllers\Backend\PartnerBackendController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\Backend\AuthenticationBackendController;
 Route::get('/', [LandingFrontendController::class, 'index']);
 
 
+
 //Backend
 //Authentication
 Route::get('/adminpanel', [AuthenticationBackendController::class, 'index']);
@@ -31,6 +33,7 @@ Route::post('/adminpanel/hero/store', [HeroBackendController::class,'store']);
 Route::get('/adminpanel/hero/delete/{id}', [HeroBackendController::class, 'destroy']);
 Route::get('/adminpanel/hero/edit/{id}', [HeroBackendController::class,'edit']);
 Route::post('/adminpanel/hero/update/{id}', [HeroBackendController::class, 'update']);
+Route::post('/adminpanel/hero/toggle-active/{id}', [HeroBackendController::class, 'toggleActive']);
 
 //About
 Route::get('/adminpanel/about', [AboutBackendController::class, 'index']);

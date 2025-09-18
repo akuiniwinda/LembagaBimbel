@@ -63,9 +63,23 @@
     <script src="{{ asset('assetsfrontend/lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('assetsfrontend/lib/waypoints/waypoints.min.js') }}"></script>
     <script src="{{ asset('assetsfrontend/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $(".header-carousel").owlCarousel({
+                items:1,
+                loop:true,
+                autoplay:true,
+                autoplayTimeout:5000,
+                nav:true,
+                dots:true
+            });
+        });
+    </script>
 
     <!-- Template Javascript -->
     <script src="{{ asset('assetsfrontend/js/main.js') }}"></script>
+
+
 
 </body>
 
