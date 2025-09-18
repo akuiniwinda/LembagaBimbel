@@ -22,11 +22,13 @@ class AboutBackendController extends Controller
     public function store(Request $request){
         $request->validate([
             'photo'             => 'required |image|mimes:jpeg,png,jpg,gif',
-            'description'       => 'required'
+            'description'       => 'required',
+            'is_active'         => 'nullable|in:active,no_active'
         ]);
 
         $databout_store = [
-            'description'       => $request->description
+            'description'       => $request->description,
+            'is_active'         => $request->has('status') ? 'active' : 'no_active',
         ];
 
         //upload foto

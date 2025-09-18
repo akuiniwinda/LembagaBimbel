@@ -3,20 +3,18 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Hero;
-use App\Models\About;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class LandingFrontendController extends Controller
+class HeroFrontendController extends Controller
 {
     public function index(){
-
-         $activeAbout = About::where('is_active', 'active')->get();
 
         // Ambil hanya hero dengan status aktif
         $activeHeros = Hero::where('is_active', 'active')->get();
 
         // Kirim data ke view landing page
-        return view('page.frontend.landing.index', compact('activeHeros','activeAbout'));
+        return view('page.frontend.landing.index', compact('activeHeros'));
+
     }
 }

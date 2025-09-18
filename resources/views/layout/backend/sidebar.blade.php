@@ -93,7 +93,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="/adminpanel/mediasosial" aria-expanded="false">
                 <span>
-                  <i class="ti ti-brand"></i>
+                  <i class="ti ti-brand-abstract"></i>
                 </span>
                 <span class="hide-menu">Media Sosial</span>
               </a>

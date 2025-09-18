@@ -32,8 +32,8 @@
                     </div>
                     <div class="mb-3">
                       <label class="form-label">Name Media Sosial</label>
-                      <input type="text" class="form-control" name="namemediasosial" value="{{$datamediasosial->namemediasosial}}">
-                        @error('namemediasosial')
+                      <input type="text" class="form-control" name="namemediasocial" value="{{$datamediasosial->namemediasocial}}">
+                        @error('namemediasocial')
 	                        <small style="color:red">{{$message}}</small>
                         @enderror
                     </div>
