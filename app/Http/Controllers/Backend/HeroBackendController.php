@@ -118,8 +118,7 @@ class HeroBackendController extends Controller
         return redirect('/adminpanel/hero');
     }
 
-    public function toggleActive(Request $request, $id)
-    {
+    public function toggleActive(Request $request, $id){
         $hero = Hero::findOrFail($id);
         $hero->is_active = $request->status == 1 ? 'active' : 'inactive';
         $hero->save();
