@@ -23,8 +23,16 @@ Route::get('/', [LandingFrontendController::class, 'index']);
 
 //Backend
 //Authentication
-Route::get('/adminpanel', [AuthenticationBackendController::class, 'index']);
-Route::post('/adminpanel/login', [AuthenticationBackendController::class, 'login']);
+Route::get('/login', [AuthenticationBackendController::class, 'showLoginForm']);
+Route::post('/login', [AuthenticationBackendController::class, 'login']);
+Route::get('/register', [AuthenticationBackendController::class, 'showRegisterForm']);
+Route::post('/register', [AuthenticationBackendController::class, 'register']);
+Route::post('/logout', [AuthenticationBackendController::class, 'logout']);
+Route::middleware('auth')->group(function () {
+    Route::get('/adminpanel/hero', function () {
+        return view('page.backend.hero.index');
+    });
+});
 
 //Hero
 Route::get('/adminpanel/hero', [HeroBackendController::class, 'index']);
@@ -42,6 +50,8 @@ Route::post('/adminpanel/about/store', [AboutBackendController::class,'store']);
 Route::get('/adminpanel/about/delete/{id}', [AboutBackendController::class, 'destroy']);
 Route::get('/adminpanel/about/edit/{id}', [AboutBackendController::class,'edit']);
 Route::post('/adminpanel/about/update/{id}', [AboutBackendController::class, 'update']);
+Route::post('/adminpanel/about/toggle-active/{id}', [AboutBackendController::class, 'toggleActive']);
+
 
 //service
 Route::get('/adminpanel/service', [ServiceBackendController::class, 'index']);
