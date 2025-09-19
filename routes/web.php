@@ -60,6 +60,7 @@ Route::post('/adminpanel/service/store', [ServiceBackendController::class,'store
 Route::get('/adminpanel/service/delete/{id}', [ServiceBackendController::class, 'destroy']);
 Route::get('/adminpanel/service/edit/{id}', [ServiceBackendController::class,'edit']);
 Route::post('/adminpanel/service/update/{id}', [ServiceBackendController::class, 'update']);
+Route::post('/adminpanel/service/toggle-active/{id}', [ServiceBackendController::class, 'toggleActive']);
 
 //gallery
 Route::get('/adminpanel/gallery', [GalleryBackendController::class, 'index']);

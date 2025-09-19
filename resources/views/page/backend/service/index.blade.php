@@ -66,4 +66,30 @@
         </div>
         <a href="/adminpanel/service/create" class="btn btn-elearning m-1 btn-custom">Tambah data</a>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".toggle-status").forEach(toggle => {
+                toggle.addEventListener("change", function() {
+                    let serviceId = this.dataset.id;
+                    let status = this.checked ? 1 : 0;
+
+                    fetch(/adminpanel/service/toggle-active/${serviceId}, {
+                            method: "POST",
+                            headers: {
+                                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                status: status
+                            })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log("Status updated:", data);
+                        })
+                        .catch(err => console.error("Error:", err));
+                });
+            });
+        });
+    </script>
 @endsection
