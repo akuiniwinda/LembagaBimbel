@@ -8,10 +8,12 @@ use App\Http\Controllers\Controller;
 
 class AboutFrontendController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        // Ambil data About yang aktif
+        $aktifAbout = About::where('is_active', 'active')->get();
 
-         $aktifAbout = About::where('is_active', 'active')->get();
-        return view('page.frontend.about.index', compact('activeAbout'));
-
+        // Kirim ke view
+        return view('page.frontend.about.index', compact('aktifAbout',));
     }
 }

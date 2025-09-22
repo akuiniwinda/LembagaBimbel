@@ -1,17 +1,18 @@
 @extends('layout.frontend.app')
 @section('content')
-    <!-- Hero Start -->
+
+    <!-- Carousel Start -->
     <div class="container-fluid p-0 mb-5">
         <div class="owl-carousel header-carousel position-relative">
-            @foreach ($activeHeros as $hero)
             <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="{{ asset('storage/' . $hero->photo) }}" alt="{{ $hero->title }}" alt="">
+                <img class="img-fluid" src="{{ asset('assetsfrontend/img/geteducatedhiroo-1.jpg') }}" alt="">
                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
                     <div class="container">
                         <div class="row justify-content-start">
                             <div class="col-sm-10 col-lg-8">
                                 <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Best Online Courses</h5>
-                                <h1 class="display-3 text-white animated slideInDown">{{ $hero->title }}</h1>
+                                <h1 class="display-3 text-white animated slideInDown">The Best Online Learning Platform</h1>
+                                <p class="fs-5 text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea sanctus eirmod elitr.</p>
                                 <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
                                 <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
                             </div>
@@ -19,32 +20,47 @@
                     </div>
                 </div>
             </div>
-            @endforeach
-        </div>
-    </div>
-    <!-- Hero End -->
-
-
-    <!-- Service Start -->
-    <div class="container-xxl py-5">
-        @foreach ( $activeService as $service )
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s" style="margin-bottom: 1.5rem;">
-                    <div class="service-item text-center pt-3" style="border: 1px solid #ddd; border-radius: 8px; padding: 1rem; height: 100%;">
-                        <div class="p-4">
-                            <img class="fa fa-3x text-primary mb-4" src="{{ asset('storage/' . $service->photo) }}" width="80" height="auto">
-                            <h5 class="mb-3">{{ $service->title }}</h5>
-                            <p>{{ $service->description }}</p>
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="{{ asset('assetsfrontend/img/carousel-2.jpg') }}" alt="">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-sm-10 col-lg-8">
+                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Best Online Courses</h5>
+                                <h1 class="display-3 text-white animated slideInDown">Get Educated Online From Your Home</h1>
+                                <p class="fs-5 text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea sanctus eirmod elitr.</p>
+                                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
+                                <a href="/contact" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Carousel End -->
+
+    <!-- Service Start -->
+    <div class="container-xxl py-5">
+
+    <div class="container">
+        <div class="row g-4">
+            @foreach ($activeService as $service)
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s" style="margin-bottom: 1.5rem;">
+                    <div class="service-item text-center pt-3" style="border: 1px solid #ddd; border-radius: 8px; padding: 1rem; height: 100%;">
+                        <div class="p-4">
+                            <img src="{{ asset('storage/' . $service->photo) }}" width="80" alt="Service" class="mb-4">
+                            <h5 class="mb-3">{{ $service->title }}</h5>
+                            <p>{{ $service->description }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
         @endforeach
     </div>
+    </div>
     <!-- Service End -->
-
 
     <!-- About Start -->
     <div class="container-xxl py-5">
@@ -69,65 +85,47 @@
     <!-- About End -->
 
 
-    <!-- Gallery Start -->
+    <!-- Galeri Start -->
     <div class="container-xxl py-5 category">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Categories</h6>
-                <h1 class="mb-5">Courses Categories</h1>
+                <h1 class="mb-5">Galeri</h1>
             </div>
             <div class="row g-3">
                 <div class="col-lg-7 col-md-6">
                     <div class="row g-3">
                         <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
                             <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="{{ asset('assetfrontend/img/cat-1.jpg') }}" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Web Design</h5>
-                                    <small class="text-primary">49 Courses</small>
-                                </div>
+                                <img class="img-fluid" src="{{ asset('assetsfrontend/img/layanankami-1.jpg') }}" alt="">
                             </a>
                         </div>
                         <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
                             <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="{{ asset('assetsfrontend/img/cat-2.jpg') }}" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Graphic Design</h5>
-                                    <small class="text-primary">49 Courses</small>
-                                </div>
+                                <img class="img-fluid" src="{{ asset('assetsfrontend/img/layanankami-2.jpg') }}" alt="">
                             </a>
                         </div>
                         <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.5s">
                             <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="{{ asset('assetsfrontend/img/cat-3.jpg') }}" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Video Editing</h5>
-                                    <small class="text-primary">49 Courses</small>
-                                </div>
+                                <img class="img-fluid" src="{{ asset('assetsfrontend/img/layanankami-3.jpg') }}" alt="">
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
                     <a class="position-relative d-block h-100 overflow-hidden" href="">
-                        <img class="img-fluid position-absolute w-100 h-100" src="{{ asset('assetsfrontend/img/cat-4.jpg') }}" alt="" style="object-fit: cover;">
-                        <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin:  1px;">
-                            <h5 class="m-0">Online Marketing</h5>
-                            <small class="text-primary">49 Courses</small>
-                        </div>
+                        <img class="img-fluid position-absolute w-100 h-100" src="{{ asset('assetsfrontend/img/layanankami-4.jpg') }}" alt="" style="object-fit: cover;">
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Gallery Start -->
-
+    <!-- Galeri End -->
+    
 
     <!-- Courses Start -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6>
                 <h1 class="mb-5">Popular Courses</h1>
             </div>
             <div class="row g-4 justify-content-center">
@@ -162,7 +160,6 @@
     </div>
     <!-- Courses End -->
 
-
     <!-- Team Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -174,7 +171,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="team-item bg-light">
                         <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('assetsfrontend/img/team-1.jpg') }}" alt="">
+                            <img class="img-fluid" src="{{ asset('assetsfrontend/img/instructor-1.jpg') }}" alt="">
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                             <div class="bg-light d-flex justify-content-center pt-2 px-1">
@@ -192,7 +189,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="team-item bg-light">
                         <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('assetsfrontend/img/team-2.jpg') }}" alt="">
+                            <img class="img-fluid" src="{{ asset('assetsfrontend/img/instructor-2.jpg') }}" alt="">
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                             <div class="bg-light d-flex justify-content-center pt-2 px-1">
@@ -210,7 +207,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="team-item bg-light">
                         <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('assetsfrontend/img/team-3.jpg') }}" alt="">
+                            <img class="img-fluid" src="{{ asset('assetsfrontend/img/instructor-3.jpg') }}" alt="">
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                             <div class="bg-light d-flex justify-content-center pt-2 px-1">
@@ -228,7 +225,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="team-item bg-light">
                         <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('assetsfrontend/img/team-4.jpg') }}" alt="">
+                            <img class="img-fluid" src="{{ asset('assetsfrontend/img/instructor-4.jpg') }}" alt="">
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                             <div class="bg-light d-flex justify-content-center pt-2 px-1">
@@ -247,7 +244,6 @@
         </div>
     </div>
     <!-- Team End -->
-
 
     <!-- Testimonial Start -->
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -271,4 +267,37 @@
         </div>
     </div>
     <!-- Testimonial End -->
+
+    <!-- Partners -->
+    <div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h1 class="mb-5">Partners</h1>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="course-item text-center p-3">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid mx-auto d-block w-50" src="{{ asset('assetsfrontend/img/partners-1.jpg') }}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="course-item text-center p-3">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid mx-auto d-block w-50" src="{{ asset('assetsfrontend/img/partners-2.jpg') }}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="course-item text-center p-3">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid mx-auto d-block w-50" src="{{ asset('assetsfrontend/img/partners-3.jpg') }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Partners End -->
 @endsection

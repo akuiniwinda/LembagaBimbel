@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Hero;
 use App\Models\About;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Courses;
@@ -12,6 +13,7 @@ use App\Models\Testimoni;
 
 class LandingFrontendController extends Controller
 {
+
     public function index(){
         // Ambil hanya hero dengan status aktif
 

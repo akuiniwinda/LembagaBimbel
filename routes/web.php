@@ -13,14 +13,51 @@ use App\Http\Controllers\Frontend\LandingFrontendController;
 use App\Http\Controllers\Backend\MediaSosialBackendController;
 use App\Http\Controllers\Backend\TenagaKerjaBackendController;
 use App\Http\Controllers\Backend\AuthenticationBackendController;
+use App\Http\Controllers\Frontend\ContactFrontendController;
+use App\Http\Controllers\Frontend\AboutFrontendController;
+use App\Http\Controllers\Frontend\ServiceFrontendController;
 use App\Http\Controllers\Backend\CoursesBackendController;
+
 
 //Frontend
 //landingpage
 Route::get('/', [LandingFrontendController::class, 'index']);
+// About
+Route::get('/about', [AboutFrontendController::class, 'index'])->name('frontend.about');
 
-//perhalaman
-Route::get('/hero', [HeroFrontendController::class, 'index']);
+// Courses
+Route::get('/courses', function () {
+    return view('page.frontend.courses.index');
+})->name('frontend.courses');
+
+// Team
+Route::get('/team', function () {
+    return view('page.frontend.team.index');
+})->name('frontend.team');
+
+// Testimonial
+Route::get('/testimonial', function () {
+    return view('page.frontend.testimonial.index');
+})->name('frontend.testimonial');
+
+// Contact
+Route::get('/contact', [ContactFrontendController::class, 'index'])->name('frontend.contact');
+
+// Service
+Route::get('/service', [ServiceFrontendController::class, 'index'])->name('frontend.service');
+
+// Galeri
+Route::get('/galeri', function () {
+    return view('page.frontend.galeri.index');
+})->name('frontend.galeri');
+
+// Partners
+Route::get('/partners', function () {
+    return view('page.frontend.partners.index');
+})->name('frontend.partners');
+
+=======
+
 
 
 
@@ -37,6 +74,7 @@ Route::middleware('auth')->group(function () {
         return view('page.backend.hero.index');
     });
 });
+
 
 //Hero
 Route::get('/adminpanel/hero', [HeroBackendController::class, 'index']);
