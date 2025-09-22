@@ -109,4 +109,15 @@ class AboutBackendController extends Controller
         //simpan data ke halaman beranda
         return redirect('/adminpanel/about');
     }
+
+    public function toggleActive(Request $request, $id){
+        $about = About::findOrFail($id);
+        $about->is_active = $request->is_active == 1 ? 'active' : 'inactive';
+        $about->save();
+
+        return response()->json([
+            'success'   => true,
+            'is_active' => $about->is_active
+        ]);
+    }
 }

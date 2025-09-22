@@ -16,13 +16,12 @@ use App\Http\Controllers\Backend\AuthenticationBackendController;
 use App\Http\Controllers\Frontend\ContactFrontendController;
 use App\Http\Controllers\Frontend\AboutFrontendController;
 use App\Http\Controllers\Frontend\ServiceFrontendController;
-
+use App\Http\Controllers\Backend\CoursesBackendController;
 
 
 //Frontend
 //landingpage
 Route::get('/', [LandingFrontendController::class, 'index']);
-
 // About
 Route::get('/about', [AboutFrontendController::class, 'index'])->name('frontend.about');
 
@@ -56,6 +55,8 @@ Route::get('/galeri', function () {
 Route::get('/partners', function () {
     return view('page.frontend.partners.index');
 })->name('frontend.partners');
+
+=======
 
 
 
@@ -101,6 +102,7 @@ Route::post('/adminpanel/service/store', [ServiceBackendController::class,'store
 Route::get('/adminpanel/service/delete/{id}', [ServiceBackendController::class, 'destroy']);
 Route::get('/adminpanel/service/edit/{id}', [ServiceBackendController::class,'edit']);
 Route::post('/adminpanel/service/update/{id}', [ServiceBackendController::class, 'update']);
+Route::post('/adminpanel/service/toggle-active/{id}', [ServiceBackendController::class, 'toggleActive']);
 
 //gallery
 Route::get('/adminpanel/gallery', [GalleryBackendController::class, 'index']);
@@ -134,7 +136,7 @@ Route::get('/adminpanel/tenagakerja/delete/{id}', [TenagaKerjaBackendController:
 Route::get('/adminpanel/tenagakerja/edit/{id}', [TenagaKerjaBackendController::class,'edit']);
 Route::post('/adminpanel/tenagakerja/update/{id}', [TenagaKerjaBackendController::class, 'update']);
 
-//partner - belum
+//partner
 Route::get('/adminpanel/partner', [PartnerBackendController::class, 'index']);
 Route::get('/adminpanel/partner/create', [PartnerBackendController::class,'create']);
 Route::post('/adminpanel/partner/store', [PartnerBackendController::class,'store']);
@@ -142,10 +144,19 @@ Route::get('/adminpanel/partner/delete/{id}', [PartnerBackendController::class, 
 Route::get('/adminpanel/partner/edit/{id}', [PartnerBackendController::class,'edit']);
 Route::post('/adminpanel/partner/update/{id}', [PartnerBackendController::class, 'update']);
 
-//media sosial - belum
+//media sosial
 Route::get('/adminpanel/mediasosial', [MediaSosialBackendController::class, 'index']);
 Route::get('/adminpanel/mediasosial/create', [MediaSosialBackendController::class,'create']);
 Route::post('/adminpanel/mediasosial/store', [MediaSosialBackendController::class,'store']);
 Route::get('/adminpanel/mediasosial/delete/{id}', [MediaSosialBackendController::class, 'destroy']);
 Route::get('/adminpanel/mediasosial/edit/{id}', [MediaSosialBackendController::class,'edit']);
 Route::post('/adminpanel/mediasosial/update/{id}', [MediaSosialBackendController::class, 'update']);
+
+//courses
+Route::get('/adminpanel/courses', [CoursesBackendController::class, 'index']);
+Route::get('/adminpanel/courses/create', [CoursesBackendController::class,'create']);
+Route::post('/adminpanel/courses/store', [CoursesBackendController::class,'store']);
+Route::get('/adminpanel/courses/delete/{id}', [CoursesBackendController::class, 'destroy']);
+Route::get('/adminpanel/courses/edit/{id}', [CoursesBackendController::class,'edit']);
+Route::post('/adminpanel/courses/update/{id}', [CoursesBackendController::class, 'update']);
+Route::post('/adminpanel/courses/toggle-active/{id}', [CoursesBackendController::class, 'toggleActive']);

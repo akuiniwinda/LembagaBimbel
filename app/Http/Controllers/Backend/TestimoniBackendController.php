@@ -115,4 +115,15 @@ class TestimoniBackendController extends Controller
         //simpan data ke halaman beranda
         return redirect('/adminpanel/testimoni');
     }
+
+    public function toggleActive(Request $request, $id){
+        $testimoni = Testimoni::findOrFail($id);
+        $testimoni->is_active = $request->is_active == 1 ? 'active' : 'inactive';
+        $testimoni->save();
+
+        return response()->json([
+            'success'   => true,
+            'is_active' => $testimoni->is_active
+        ]);
+    }
 }

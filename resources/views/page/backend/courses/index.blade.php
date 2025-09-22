@@ -7,22 +7,28 @@
           <div class="col-lg-12 d-flex align-items-stretch">
             <div class="card w-100">
               <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Recent Testimoni</h5>
+                <h5 class="card-title fw-semibold mb-4">Recent Courses</h5>
                 <div class="table-responsive">
                   <table class="table text-nowrap mb-0 align-middle">
                     <thead class="text-dark fs-4">
                       <tr>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Photo Profile</h6>
+                          <h6 class="fw-semibold mb-0">Photo</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Tittle</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Harga</h6>
                         </th>
                         <th class="border-bottom-0">
                           <h6 class="fw-semibold mb-0">Name</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Description</h6>
+                          <h6 class="fw-semibold mb-0">Time</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Rating</h6>
+                          <h6 class="fw-semibold mb-0">Student</h6>
                         </th>
                         <th class="border-bottom-0">
                           <h6 class="fw-semibold mb-0">Status</h6>
@@ -33,31 +39,37 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($testimonis as $testimonal)
+                        @foreach ($courses as $kursuse)
                             <tr>
                                 <td class="border-bottom-0">
-                                <img src="{{asset('storage/'.$testimonal->photo_profile)}}" width="100">
+                                <img src="{{asset('storage/'.$kursuse->photo)}}" width="100">
                                 </td>
                                 <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-1">{{$testimonal->name}}</h6>
+                                    <h6 class="fw-semibold mb-1">{{$kursuse->title}}</h6>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-1">{{$testimonal->description}}</h6>
+                                    <h6 class="fw-semibold mb-1">{{$kursuse->harga}}</h6>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-1">{{$testimonal->rating}}</h6>
+                                    <h6 class="fw-semibold mb-1">{{$kursuse->name}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">{{$kursuse->time}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">{{$kursuse->student}}</h6>
                                 </td>
                                 <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2" >
                                     <div class="form-check form-switch float-left custom-switch">
-                                        <input class="form-check-input" type="checkbox" id="status" name="status">
+                                        <input class="form-check-input" type="checkbox" id="is_active_{{$kursuse->id}}" name="is_active" {{ $kursuse->is_active === 'active' ? 'checked' : '' }} data-id="{{ $kursuse->id }}">
                                     </div>
                                 </div>
                                 </td>
                                 <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2">
-                                    <a class="badge bg-success rounded-3 fw-semibold" href="/adminpanel/about/edit/{{$testimonal->id}}">Edit</a>
-                                    <a class="badge bg-danger rounded-3 fw-semibold" href="/adminpanel/about/delete/{{$testimonal->id}}">Delete</a>
+                                    <a class="badge bg-success rounded-3 fw-semibold" href="/adminpanel/courses/edit/{{$kursuse->id}}">Edit</a>
+                                    <a class="badge bg-danger rounded-3 fw-semibold" href="/adminpanel/courses/delete/{{$kursuse->id}}">Delete</a>
                                 </div>
                                 </td>
                                 </tr>
@@ -70,16 +82,16 @@
             </div>
           </div>
         </div>
-        <a href="/adminpanel/testimoni/create" class="btn btn-elearning m-1 btn-custom">Tambah data</a>
+        <a href="/adminpanel/courses/create" class="btn btn-elearning m-1 btn-custom">Tambah data</a>
     </div>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll(".toggle-active").forEach(toggle => {
             toggle.addEventListener("change", function() {
-                let testimoniId = this.dataset.id;  // Asumsi: data-id="${testimoni.id}" di HTML input
+                let coursesId = this.dataset.id;  // Asumsi: data-id="${testimoni.id}" di HTML input
                 let is_active = this.checked ? 1 : 0;  // 1 untuk active (checked), 0 untuk inactive
 
-                fetch(`/adminpanel/testimoni/toggle-active/${testimoniId}`, {  // Perbaiki: Tambah backtick untuk template literal
+                fetch(`/adminpanel/courses/toggle-active/${coursesId}`, {  // Perbaiki: Tambah backtick untuk template literal
                     method: "POST",
                     headers: {
                         "X-CSRF-TOKEN": "{{ csrf_token() }}",  // Pastikan ini di Blade template Laravel

@@ -111,4 +111,15 @@ class ServiceBackendController extends Controller
         //simpan data ke halaman beranda
         return redirect('/adminpanel/service');
     }
+
+    public function toggleActive(Request $request, $id){
+        $service = Service::findOrFail($id);
+        $service->is_active = $request->status == 1 ? 'active' : 'inactive';
+        $service->save();
+
+        return response()->json([
+            'success'   => true,
+            'is_active' => $service->is_active
+        ]);
+    }
 }
