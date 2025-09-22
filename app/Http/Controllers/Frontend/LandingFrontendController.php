@@ -6,20 +6,26 @@ use App\Models\Hero;
 use App\Models\About;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Courses;
 use App\Models\Service;
+use App\Models\Testimoni;
 
 class LandingFrontendController extends Controller
 {
     public function index(){
-
-         $activeAbout = About::where('is_active', 'active')->get();
-
-         $activeService = Service::where('is_active', 'active')->get();
-
         // Ambil hanya hero dengan status aktif
+
+        $activeAbout = About::where('is_active', 'active')->get();
+
+        $activeService = Service::where('is_active', 'active')->get();
+
         $activeHeros = Hero::where('is_active', 'active')->get();
 
+        $activeTestimoni = Testimoni::where('is_active', 'active')->get();
+
+        $activeCourses = Courses::where('is_active', 'active')->get();
+
         // Kirim data ke view landing page
-        return view('page.frontend.landing.index', compact('activeHeros','activeAbout', 'activeService'));
+        return view('page.frontend.landing.index', compact('activeHeros','activeAbout', 'activeService', 'activeTestimoni', 'activeCourses'));
     }
 }

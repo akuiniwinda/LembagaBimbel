@@ -10,8 +10,8 @@ class AboutFrontendController extends Controller
 {
     public function index(){
 
-         $activeAbout = About::where('is_active', 'active')->get();
-        return view('page.frontend.landing.index', compact('activeAbout'));
+         $aktifAbout = About::where('is_active', 'active')->get();
+        return view('page.frontend.about.index', compact('activeAbout'));
 
     }
 }
