@@ -28,7 +28,7 @@ class HeroBackendController extends Controller
 
         $datahero_store = [
             'title'       => $request->title,
-            'is_active'   => $request->has('status') ? 'active' : 'no_active',
+            'is_active'   => $request->has('is_active') ? 'active' : 'no_active',
         ];
 
         //upload foto
@@ -36,7 +36,7 @@ class HeroBackendController extends Controller
 
         // Tentukan status aktif berdasarkan checkbox
         // Checkbox jika dicentang akan mengirimkan 'on', jika tidak maka null
-        $isActive = $request->has('status') ? 'active' : 'no_active';
+        $isActive = $request->has('is_active') ? 'active' : 'no_active';
 
 
 
@@ -100,7 +100,7 @@ class HeroBackendController extends Controller
         //siapkan data yang akan disiampan sebagai update
         $datahero_update = [
             'title'       => $request->title,
-            'is_active'   => $request->has('status') ? 'active' : 'no_active',
+            'is_active'   => $request->has('is_active') ? 'active' : 'no_active',
         ];
 
         if ($request->hasFile('photo')){
@@ -120,7 +120,7 @@ class HeroBackendController extends Controller
 
     public function toggleActive(Request $request, $id){
         $hero = Hero::findOrFail($id);
-        $hero->is_active = $request->status == 1 ? 'active' : 'inactive';
+        $hero->is_active = $request->is_active == 1 ? 'active' : 'inactive';
         $hero->save();
 
         return response()->json([
