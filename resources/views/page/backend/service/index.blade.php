@@ -44,7 +44,7 @@
                                 <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2" >
                                     <div class="form-check form-switch float-left custom-switch">
-                                        <input class="form-check-input" type="checkbox" id="status" name="status">
+                                        <input class="form-check-input" type="checkbox" id="is_active_{{$servs->id}}" name="is_active" {{ $servs->is_active === 'active' ? 'checked' : '' }} data-id="{{ $servs->id }}">
                                     </div>
                                 </div>
                                 </td>
@@ -68,10 +68,10 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll(".toggle-status").forEach(toggle => {
+            document.querySelectorAll(".toggle-active").forEach(toggle => {
                 toggle.addEventListener("change", function() {
                     let serviceId = this.dataset.id;
-                    let status = this.checked ? 1 : 0;
+                    let is_active = this.checked ? 1 : 0;
 
                     fetch(/adminpanel/service/toggle-active/${serviceId}, {
                             method: "POST",
@@ -80,7 +80,7 @@
                                 "Content-Type": "application/json",
                             },
                             body: JSON.stringify({
-                                status: status
+                                is_active: is_active
                             })
                         })
                         .then(res => res.json())

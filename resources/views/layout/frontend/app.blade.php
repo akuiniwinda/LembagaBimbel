@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>eLEARNING - eLearning HTML Template</title>
+    <title>eLEARNING</title>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assetsbackend/images/logos/logo-buku.svg') }}" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">

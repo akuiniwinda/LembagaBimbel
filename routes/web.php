@@ -100,6 +100,7 @@ Route::post('/adminpanel/gallery/store', [GalleryBackendController::class,'store
 Route::get('/adminpanel/gallery/delete/{id}', [GalleryBackendController::class, 'destroy']);
 Route::get('/adminpanel/gallery/edit/{id}', [GalleryBackendController::class,'edit']);
 Route::post('/adminpanel/gallery/update/{id}', [GalleryBackendController::class, 'update']);
+Route::post('/adminpanel/gallery/toggle-active/{id}', [GalleryBackendController::class, 'toggleActive']);
 
 //contact
 Route::get('/adminpanel/contact', [ContactBackendController::class, 'index']);
@@ -108,6 +109,7 @@ Route::post('/adminpanel/contact/store', [ContactBackendController::class,'store
 Route::get('/adminpanel/contact/delete/{id}', [ContactBackendController::class, 'destroy']);
 Route::get('/adminpanel/contact/edit/{id}', [ContactBackendController::class,'edit']);
 Route::post('/adminpanel/contact/update/{id}', [ContactBackendController::class, 'update']);
+Route::post('/adminpanel/contact/toggle-active/{id}', [ContactBackendController::class, 'toggleActive']);
 
 //testimoni
 Route::get('/adminpanel/testimoni', [TestimoniBackendController::class, 'index']);
@@ -116,6 +118,7 @@ Route::post('/adminpanel/testimoni/store', [TestimoniBackendController::class,'s
 Route::get('/adminpanel/testimoni/delete/{id}', [TestimoniBackendController::class, 'destroy']);
 Route::get('/adminpanel/testimoni/edit/{id}', [TestimoniBackendController::class,'edit']);
 Route::post('/adminpanel/testimoni/update/{id}', [TestimoniBackendController::class, 'update']);
+Route::post('/adminpanel/testimoni/toggle-active/{id}', [TestimoniBackendController::class, 'toggleActive']);
 
 //tenaga kerja
 Route::get('/adminpanel/tenagakerja', [TenagaKerjaBackendController::class, 'index']);
@@ -142,6 +145,7 @@ Route::post('/adminpanel/mediasosial/store', [MediaSosialBackendController::clas
 Route::get('/adminpanel/mediasosial/delete/{id}', [MediaSosialBackendController::class, 'destroy']);
 Route::get('/adminpanel/mediasosial/edit/{id}', [MediaSosialBackendController::class,'edit']);
 Route::post('/adminpanel/mediasosial/update/{id}', [MediaSosialBackendController::class, 'update']);
+Route::post('/adminpanel/mediasosial/toggle-active/{id}', [MediaSosialBackendController::class, 'toggleActive']);
 
 //courses
 Route::get('/adminpanel/courses', [CoursesBackendController::class, 'index']);
