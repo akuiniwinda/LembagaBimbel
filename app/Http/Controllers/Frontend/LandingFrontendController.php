@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Courses;
 use App\Models\Partner;
+use App\Models\TenagaKerja;
 use App\Models\Testimoni;
 
 class LandingFrontendController extends Controller
@@ -29,8 +30,10 @@ class LandingFrontendController extends Controller
 
         $activePartner = Partner::where('is_active', 'active')->get();
 
+        $activeTenagakerja = TenagaKerja::where('is_active', 'active')->get();
+
         // Kirim data ke view landing page
         return view('page.frontend.landing.index', compact('activeHeros','activeAbout', 'activeService',
-         'activeTestimoni', 'activeCourses', 'activePartner'));
+         'activeTestimoni', 'activeCourses', 'activePartner','activeTenagakerja'));
     }
 }

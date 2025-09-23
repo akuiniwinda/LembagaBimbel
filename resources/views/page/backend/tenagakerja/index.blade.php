@@ -72,4 +72,40 @@
         </div>
         <a href="/adminpanel/tenagakerja/create" class="btn btn-elearning m-1 btn-custom">Tambah data</a>
     </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".toggle-active").forEach(toggle => {
+            toggle.addEventListener("change", function() {
+                let tenagakerjaId = this.dataset.id;  // Asumsi: data-id="${testimoni.id}" di HTML input
+                let is_active = this.checked ? 1 : 0;  // 1 untuk active (checked), 0 untuk inactive
+
+                fetch(`/adminpanel/tenagakerja/toggle-active/${tenagakerjaId}`, {  // Perbaiki: Tambah backtick untuk template literal
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",  // Pastikan ini di Blade template Laravel
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        is_active: is_active  // PERBAIKAN: Ganti dari 'status: status' menjadi 'is_active: is_active'
+                        // (sebelumnya 'status' undefined, sekarang konsisten dengan variabel)
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Status updated:", data);
+                    // Opsional: Tampilkan notifikasi sukses, misalnya alert(data.message);
+                    if (data.success) {
+                        // Update UI jika perlu, misalnya ubah teks label
+                    }
+                })
+                .catch(err => {
+                    console.error("Error:", err);
+                    // Opsional: Tampilkan error ke user, misalnya alert('Gagal update status');
+                    // Rollback checkbox jika error
+                    this.checked = !this.checked;
+                });
+            });
+        });
+    });
+</script>
 @endsection
