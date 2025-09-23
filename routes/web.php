@@ -60,9 +60,9 @@ Route::get('/partners', function () {
 //Backend
 //Authentication
 Route::get('/admin', [HeroBackendController::class, 'index'])->middleware(('auth'));
-Route::get('/login', [AuthenticationBackendController::class, 'showLoginForm']);
-Route::post('/login', [AuthenticationBackendController::class, 'login']);
-Route::post('/logout', [AuthenticationBackendController::class, 'logout']);
+Route::get('/login', [AuthenticationBackendController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthenticationBackendController::class, 'login'])->name('login.process');
+Route::post('/logout', [AuthenticationBackendController::class, 'logout'])->name('logout');
 
 
 //Hero
