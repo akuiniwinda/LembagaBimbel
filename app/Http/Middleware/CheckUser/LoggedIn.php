@@ -14,14 +14,9 @@ class LoggedIn
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
-        // Cek apakah user sudah login
-        if (!Auth::check()) {
-            // Jika belum login, redirect ke halaman login
-            return redirect('/login')->with('error', 'Anda harus login terlebih dahulu.');
+    protected function redireactTo($request){
+        if (! $request->exceptJson()){
+            return route('login');
         }
-        // Jika sudah login, lanjutkan request
-        return $next($request);
     }
 }

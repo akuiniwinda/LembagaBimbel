@@ -46,6 +46,15 @@
             </li>
 
             <li class="sidebar-item">
+              <a class="sidebar-link" href="/adminpanel/courses" aria-expanded="false">
+                <span>
+                  <i class="ti ti-heart-handshake"></i>
+                </span>
+                <span class="hide-menu">Courses</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
               <a class="sidebar-link" href="/adminpanel/gallery" aria-expanded="false">
                 <span>
                   <i class="ti ti-photo"></i>
@@ -73,7 +82,7 @@
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/adminpanel/partners" aria-expanded="false">
+              <a class="sidebar-link" href="/adminpanel/partner" aria-expanded="false">
                 <span>
                   <i class="ti ti-heart-handshake"></i>
                 </span>

@@ -115,4 +115,15 @@ class TenagaKerjaBackendController extends Controller
         //simpan data ke halaman beranda
         return redirect('/adminpanel/tenagakerja');
     }
+
+    public function toggleActive(Request $request, $id){
+        $tenagakerja = TenagaKerja::findOrFail($id);
+        $tenagakerja->is_active = $request->is_active == 1 ? 'active' : 'inactive';
+        $tenagakerja->save();
+
+        return response()->json([
+            'success'   => true,
+            'is_active' => $tenagakerja->is_active
+        ]);
+    }
 }

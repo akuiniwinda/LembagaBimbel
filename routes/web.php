@@ -59,16 +59,10 @@ Route::get('/partners', function () {
 
 //Backend
 //Authentication
+Route::get('/admin', [HeroBackendController::class, 'index'])->middleware(('auth'));
 Route::get('/login', [AuthenticationBackendController::class, 'showLoginForm']);
 Route::post('/login', [AuthenticationBackendController::class, 'login']);
-Route::get('/register', [AuthenticationBackendController::class, 'showRegisterForm']);
-Route::post('/register', [AuthenticationBackendController::class, 'register']);
 Route::post('/logout', [AuthenticationBackendController::class, 'logout']);
-Route::middleware('auth')->group(function () {
-    Route::get('/adminpanel/hero', function () {
-        return view('page.backend.hero.index');
-    });
-});
 
 
 //Hero
@@ -130,6 +124,7 @@ Route::post('/adminpanel/tenagakerja/store', [TenagaKerjaBackendController::clas
 Route::get('/adminpanel/tenagakerja/delete/{id}', [TenagaKerjaBackendController::class, 'destroy']);
 Route::get('/adminpanel/tenagakerja/edit/{id}', [TenagaKerjaBackendController::class,'edit']);
 Route::post('/adminpanel/tenagakerja/update/{id}', [TenagaKerjaBackendController::class, 'update']);
+Route::post('/adminpanel/tenagakerja/toggle-active/{id}', [TenagaKerjaBackendController::class, 'toggleActive']);
 
 //partner
 Route::get('/adminpanel/partner', [PartnerBackendController::class, 'index']);
