@@ -4,15 +4,15 @@
     <!-- Carousel Start -->
     <div class="container-fluid p-0 mb-5">
         <div class="owl-carousel header-carousel position-relative">
+            @foreach ( $activeHeros as $hero )
             <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="{{ asset('assetsfrontend/img/geteducatedhiroo-1.jpg') }}" alt="">
+                <img class="img-fluid" src="{{ asset('storage/' . $hero->photo) }}" alt="">
                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
                     <div class="container">
                         <div class="row justify-content-start">
                             <div class="col-sm-10 col-lg-8">
                                 <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Best Online Courses</h5>
-                                <h1 class="display-3 text-white animated slideInDown">The Best Online Learning Platform</h1>
-                                <p class="fs-5 text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea sanctus eirmod elitr.</p>
+                                <h1 class="display-3 text-white animated slideInDown">{{ $hero->title }}</h1>
                                 <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
                                 <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
                             </div>
@@ -20,22 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="{{ asset('assetsfrontend/img/carousel-2.jpg') }}" alt="">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-sm-10 col-lg-8">
-                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Best Online Courses</h5>
-                                <h1 class="display-3 text-white animated slideInDown">Get Educated Online From Your Home</h1>
-                                <p class="fs-5 text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea sanctus eirmod elitr.</p>
-                                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
-                                <a href="/contact" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     <!-- Carousel End -->
@@ -55,10 +40,9 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
-        </div>
+            </div>
         @endforeach
-    </div>
+        </div>
     </div>
     <!-- Service End -->
 
@@ -120,7 +104,7 @@
         </div>
     </div>
     <!-- Galeri End -->
-    
+
 
     <!-- Courses Start -->
     <div class="container-xxl py-5">
@@ -274,29 +258,17 @@
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h1 class="mb-5">Partners</h1>
         </div>
+        @foreach ( $activePartner as $partner )
         <div class="row g-4 justify-content-center">
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="course-item text-center p-3">
                     <div class="position-relative overflow-hidden">
-                        <img class="img-fluid mx-auto d-block w-50" src="{{ asset('assetsfrontend/img/partners-1.jpg') }}" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="course-item text-center p-3">
-                    <div class="position-relative overflow-hidden">
-                        <img class="img-fluid mx-auto d-block w-50" src="{{ asset('assetsfrontend/img/partners-2.jpg') }}" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="course-item text-center p-3">
-                    <div class="position-relative overflow-hidden">
-                        <img class="img-fluid mx-auto d-block w-50" src="{{ asset('assetsfrontend/img/partners-3.jpg') }}" alt="">
+                        <img class="img-fluid mx-auto d-block w-50" src="{{ asset('storage/' . $partner->photo) }}" alt="">
                     </div>
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
     </div>
     <!-- Partners End -->

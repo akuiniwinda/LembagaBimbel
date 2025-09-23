@@ -8,7 +8,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Courses;
-use App\Models\Service;
+use App\Models\Partner;
 use App\Models\Testimoni;
 
 class LandingFrontendController extends Controller
@@ -27,7 +27,10 @@ class LandingFrontendController extends Controller
 
         $activeCourses = Courses::where('is_active', 'active')->get();
 
+        $activePartner = Partner::where('is_active', 'active')->get();
+
         // Kirim data ke view landing page
-        return view('page.frontend.landing.index', compact('activeHeros','activeAbout', 'activeService', 'activeTestimoni', 'activeCourses'));
+        return view('page.frontend.landing.index', compact('activeHeros','activeAbout', 'activeService',
+         'activeTestimoni', 'activeCourses', 'activePartner'));
     }
 }
