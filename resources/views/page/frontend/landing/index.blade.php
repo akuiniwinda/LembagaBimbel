@@ -11,7 +11,7 @@
                     <div class="container">
                         <div class="row justify-content-start">
                             <div class="col-sm-10 col-lg-8">
-                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Best Online Courses</h5>
+                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Bimbel Kekinian untuk Generasi Digital</h5>
                                 <h1 class="display-3 text-white animated slideInDown">{{ $hero->title }}</h1>
                                 <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
                                 <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
@@ -27,9 +27,8 @@
 
     <!-- Service Start -->
     <div class="container-xxl py-5">
-
-    <div class="container">
-        <div class="row g-4">
+        <div class="container">
+            <div class="row g-4">
             @foreach ($activeService as $service)
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s" style="margin-bottom: 1.5rem;">
                     <div class="service-item text-center pt-3" style="border: 1px solid #ddd; border-radius: 8px; padding: 1rem; height: 100%;">
@@ -41,7 +40,7 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+            @endforeach
         </div>
     </div>
     <!-- Service End -->
@@ -76,34 +75,71 @@
                 <h1 class="mb-5">Galeri</h1>
             </div>
             <div class="row g-3">
+                {{-- Kolom Kiri: 1 besar + 2 kecil --}}
                 <div class="col-lg-7 col-md-6">
                     <div class="row g-3">
-                        <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
-                            <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="{{ asset('assetsfrontend/img/layanankami-1.jpg') }}" alt="">
-                            </a>
-                        </div>
-                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
-                            <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="{{ asset('assetsfrontend/img/layanankami-2.jpg') }}" alt="">
-                            </a>
-                        </div>
-                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.5s">
-                            <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="{{ asset('assetsfrontend/img/layanankami-3.jpg') }}" alt="">
-                            </a>
-                        </div>
+                        {{-- Item 1: Besar full width kiri atas (index 0) --}}
+                        @if($activeGallery->count() > 0)
+                            @foreach($activeGallery->slice(0, 1) as $gallery)  {{-- Ambil hanya item pertama --}}
+                                <div class="col-lg-12 col-md-12 wow zoomIn"
+                                    data-wow-delay="{{ $loop->parent->index % 4 == 0 ? '0.1s' : ($loop->parent->index % 4 == 1 ? '0.3s' : ($loop->parent->index % 4 == 2 ? '0.5s' : '0.7s')) }}">
+                                    <a class="position-relative d-block overflow-hidden" href="{{ asset('storage/' . $gallery->photo) }}">
+                                        <img class="img-fluid"
+                                            src="{{ asset('storage/' . $gallery->photo) }}"
+                                            alt="{{ $gallery->description ?? 'Galeri Foto' }}">
+                                    </a>
+                                </div>
+                            @endforeach
+                        @endif
+
+                        {{-- Item 2 & 3: 2 kecil half width kiri bawah (index 1 & 2) --}}
+                        @if($activeGallery->count() > 1)
+                            @foreach($activeGallery->slice(1, 2) as $gallery)  {{-- Ambil item 2 & 3 --}}
+                                <div class="col-lg-6 col-md-12 wow zoomIn"
+                                    data-wow-delay="{{ ($loop->parent->index + 1) % 4 == 0 ? '0.1s' : (($loop->parent->index + 1) % 4 == 1 ? '0.3s' : (($loop->parent->index + 1) % 4 == 2 ? '0.5s' : '0.7s')) }}">
+                                    <a class="position-relative d-block overflow-hidden" href="{{ asset('storage/' . $gallery->photo) }}">
+                                        <img class="img-fluid"
+                                            src="{{ asset('storage/' . $gallery->photo) }}"
+                                            alt="{{ $gallery->description ?? 'Galeri Foto' }}">
+                                    </a>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
+
+                {{-- Kolom Kanan: 1 besar vertikal (index 3) --}}
                 <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
-                    <a class="position-relative d-block h-100 overflow-hidden" href="">
-                        <img class="img-fluid position-absolute w-100 h-100" src="{{ asset('assetsfrontend/img/layanankami-4.jpg') }}" alt="" style="object-fit: cover;">
-                    </a>
+                    @if($activeGallery->count() > 3)
+                        @foreach($activeGallery->slice(3, 1) as $gallery)  {{-- Ambil item ke-4 --}}
+                            <a class="position-relative d-block h-100 overflow-hidden" href="{{ asset('storage/' . $gallery->photo) }}">
+                                <img class="img-fluid position-absolute w-100 h-100"
+                                    src="{{ asset('storage/' . $gallery->photo) }}"
+                                    alt="{{ $gallery->description ?? 'Galeri Foto' }}"
+                                    style="object-fit: cover;">
+                            </a>
+                        @endforeach
                 </div>
             </div>
+
+            {{-- Opsi: Jika data >4, tambah row ekstra di bawah untuk item sisanya --}}
+            @if($activeGallery->count() > 4)
+                <div class="row g-3 mt-4">
+                    @foreach($activeGallery->slice(4) as $gallery)
+                        <div class="col-lg-3 col-md-6 wow zoomIn"
+                            data-wow-delay="{{ $loop->index % 4 == 0 ? '0.1s' : ($loop->index % 4 == 1 ? '0.3s' : ($loop->index % 4 == 2 ? '0.5s' : '0.7s')) }}">
+                            <a class="position-relative d-block overflow-hidden" href="{{ asset('storage/' . $gallery->photo) }}">
+                                <img class="img-fluid"
+                                    src="{{ asset('storage/' . $gallery->photo) }}"
+                                    alt="{{ $gallery->description ?? 'Galeri Foto' }}">
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
-    <!-- Galeri End -->
+<!-- Galeri End -->
 
 
     <!-- Courses Start -->

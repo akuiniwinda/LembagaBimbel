@@ -111,4 +111,15 @@ class GalleryBackendController extends Controller
         //simpan data ke halaman beranda
         return redirect('/adminpanel/gallery');
     }
+
+    public function toggleActive(Request $request, $id){
+        $gallery = Gallery::findOrFail($id);
+        $gallery->is_active = $request->is_active == 1 ? 'active' : 'inactive';
+        $gallery->save();
+
+        return response()->json([
+            'success'   => true,
+            'is_active' => $gallery->is_active
+        ]);
+    }
 }
