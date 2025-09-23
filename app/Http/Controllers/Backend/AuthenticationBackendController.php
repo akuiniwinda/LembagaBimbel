@@ -24,7 +24,7 @@ class AuthenticationBackendController extends Controller
         //cek login
         if (Auth::attempt($credentials, $request->remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/admin');
+            return redirect()->intended('/adminpanel/hero');
         }
 
         return back()->withErrors([

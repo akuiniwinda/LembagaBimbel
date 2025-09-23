@@ -23,17 +23,18 @@
                 <a class="text-nowrap logo-img text-center d-block py-3 w-100">
                   <img src="{{ asset('assetsbackend/images/logos/logo-elearning.png') }}" width="180" alt="">
                 </a>
-                <form action="/login" method="POST">
+                <form action="{{ route('login.process') }}" method="POST">
                 @csrf
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="email" name="email" class="form-control">
                   </div>
                   <div class="mb-4">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                   </div>
-                  <button type="submit" href="/adminpanel/hero" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Login</button>
+                 <button type="submit" class="btn btn-elearning w-100 py-8 fs-4 mb-4 rounded-2">Login</button>
+
                 </form>
               </div>
             </div>

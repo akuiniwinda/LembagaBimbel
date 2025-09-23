@@ -48,7 +48,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="/adminpanel/courses" aria-expanded="false">
                 <span>
-                  <i class="ti ti-heart-handshake"></i>
+                  <i class="ti ti-analyze"></i>
                 </span>
                 <span class="hide-menu">Courses</span>
               </a>
