@@ -36,7 +36,7 @@ class PartnerBackendController extends Controller
 
         Partner::create($datapartners_store);
 
-        return redirect('/adminpanel/partners');
+        return redirect('/adminpanel/partner');
     }
 
     public function destroy($id){
@@ -110,5 +110,16 @@ class PartnerBackendController extends Controller
 
         //simpan data ke halaman beranda
         return redirect('/adminpanel/partner');
+    }
+
+    public function toggleActive(Request $request, $id){
+        $partner = Partner::findOrFail($id);
+        $partner->is_active = $request->is_active == 1 ? 'active' : 'inactive';
+        $partner->save();
+
+        return response()->json([
+            'success'   => true,
+            'is_active' => $partner->is_active
+        ]);
     }
 }

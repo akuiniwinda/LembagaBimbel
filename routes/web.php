@@ -23,7 +23,7 @@ use App\Http\Controllers\Backend\CoursesBackendController;
 //landingpage
 Route::get('/', [LandingFrontendController::class, 'index']);
 // About
-Route::get('/about', [AboutFrontendController::class, 'index'])->name('frontend.about');
+Route::get('/about', [AboutFrontendController::class, 'index']);
 
 // Courses
 Route::get('/courses', function () {
@@ -55,11 +55,6 @@ Route::get('/galeri', function () {
 Route::get('/partners', function () {
     return view('page.frontend.partners.index');
 })->name('frontend.partners');
-
-=======
-
-
-
 
 
 //Backend
@@ -143,6 +138,7 @@ Route::post('/adminpanel/partner/store', [PartnerBackendController::class,'store
 Route::get('/adminpanel/partner/delete/{id}', [PartnerBackendController::class, 'destroy']);
 Route::get('/adminpanel/partner/edit/{id}', [PartnerBackendController::class,'edit']);
 Route::post('/adminpanel/partner/update/{id}', [PartnerBackendController::class, 'update']);
+Route::post('/adminpanel/partner/toggle-active/{id}', [PartnerBackendController::class, 'toggleActive']);
 
 //media sosial
 Route::get('/adminpanel/mediasosial', [MediaSosialBackendController::class, 'index']);

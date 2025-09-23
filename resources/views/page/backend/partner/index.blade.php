@@ -30,7 +30,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($parneres as $partner)
+                        @foreach ($partneres as $partner)
                             <tr>
                                 <td class="border-bottom-0">
                                 <img src="{{asset('storage/'.$partner->photo)}}" width="100">
@@ -44,7 +44,7 @@
                                 <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2" >
                                     <div class="form-check form-switch float-left custom-switch">
-                                        <input class="form-check-input" type="checkbox" id="is_active_{{$partner->id}}" name="is_active" {{ $hiro->is_active === 'active' ? 'checked' : '' }} data-id="{{ $hiro->id }}">
+                                        <input class="form-check-input" type="checkbox" id="is_active_{{$partner->id}}" name="is_active" {{ $partner->is_active === 'active' ? 'checked' : '' }} data-id="{{ $partner->id }}">
                                     </div>
                                 </div>
                                 </td>
@@ -66,4 +66,40 @@
         </div>
         <a href="/adminpanel/partner/create" class="btn btn-elearning m-1 btn-custom">Tambah data</a>
     </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".toggle-active").forEach(toggle => {
+            toggle.addEventListener("change", function() {
+                let partnerId = this.dataset.id;  // Asumsi: data-id="${testimoni.id}" di HTML input
+                let is_active = this.checked ? 1 : 0;  // 1 untuk active (checked), 0 untuk inactive
+
+                fetch(`/adminpanel/partner/toggle-active/${partnerId}`, {  // Perbaiki: Tambah backtick untuk template literal
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",  // Pastikan ini di Blade template Laravel
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        is_active: is_active  // PERBAIKAN: Ganti dari 'status: status' menjadi 'is_active: is_active'
+                        // (sebelumnya 'status' undefined, sekarang konsisten dengan variabel)
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Status updated:", data);
+                    // Opsional: Tampilkan notifikasi sukses, misalnya alert(data.message);
+                    if (data.success) {
+                        // Update UI jika perlu, misalnya ubah teks label
+                    }
+                })
+                .catch(err => {
+                    console.error("Error:", err);
+                    // Opsional: Tampilkan error ke user, misalnya alert('Gagal update status');
+                    // Rollback checkbox jika error
+                    this.checked = !this.checked;
+                });
+            });
+        });
+    });
+</script>
 @endsection
