@@ -1,23 +1,28 @@
 <?php
 
+use App\Models\Courses;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\HeroBackendController;
 use App\Http\Controllers\Backend\AboutBackendController;
 use App\Http\Controllers\Frontend\HeroFrontendController;
+use App\Http\Controllers\Frontend\HomeFrontendController;
 use App\Http\Controllers\Backend\ContactBackendController;
+use App\Http\Controllers\Backend\CoursesBackendController;
 use App\Http\Controllers\Backend\GalleryBackendController;
 use App\Http\Controllers\Backend\PartnerBackendController;
 use App\Http\Controllers\Backend\ServiceBackendController;
+use App\Http\Controllers\Frontend\AboutFrontendController;
+use App\Http\Controllers\Frontend\GaleriFrontendController;
 use App\Http\Controllers\Backend\TestimoniBackendController;
+use App\Http\Controllers\Frontend\ContactFrontendController;
+use App\Http\Controllers\Frontend\CoursesFrontendController;
 use App\Http\Controllers\Frontend\LandingFrontendController;
+use App\Http\Controllers\Frontend\ServiceFrontendController;
+use App\Http\Controllers\Frontend\PartnersFrontendController;
 use App\Http\Controllers\Backend\MediaSosialBackendController;
 use App\Http\Controllers\Backend\TenagaKerjaBackendController;
+use App\Http\Controllers\Frontend\TestimonialFrontendController;
 use App\Http\Controllers\Backend\AuthenticationBackendController;
-use App\Http\Controllers\Frontend\ContactFrontendController;
-use App\Http\Controllers\Frontend\AboutFrontendController;
-use App\Http\Controllers\Frontend\ServiceFrontendController;
-use App\Http\Controllers\Backend\CoursesBackendController;
-
 
 //Frontend
 //landingpage
@@ -26,35 +31,30 @@ Route::get('/', [LandingFrontendController::class, 'index']);
 Route::get('/about', [AboutFrontendController::class, 'index']);
 
 // Courses
-Route::get('/courses', function () {
-    return view('page.frontend.courses.index');
-})->name('frontend.courses');
+Route::get('/courses', [CoursesFrontendController::class, 'index']);
 
 // Team
-Route::get('/team', function () {
-    return view('page.frontend.team.index');
-})->name('frontend.team');
+Route::get('/tenagakerja', [ServiceFrontendController::class, 'index']);
 
 // Testimonial
-Route::get('/testimonial', function () {
-    return view('page.frontend.testimonial.index');
-})->name('frontend.testimonial');
+Route::get('/testimonial', [TestimonialFrontendController::class, 'index']);
 
 // Contact
-Route::get('/contact', [ContactFrontendController::class, 'index'])->name('frontend.contact');
+Route::get('/contact', [ContactFrontendController::class, 'index']);
+Route::get('/contact/create', [ContactFrontendController::class,'create']);
+Route::post('/contact/store', [ContactFrontendController::class,'store']);
 
 // Service
-Route::get('/service', [ServiceFrontendController::class, 'index'])->name('frontend.service');
+Route::get('/service', [ServiceFrontendController::class, 'index']);
 
 // Galeri
-Route::get('/galeri', function () {
-    return view('page.frontend.galeri.index');
-})->name('frontend.galeri');
+Route::get('/galeri', [GaleriFrontendController::class, 'index']);
 
 // Partners
-Route::get('/partners', function () {
-    return view('page.frontend.partners.index');
-})->name('frontend.partners');
+Route::get('/partners', [PartnersFrontendController::class, 'index']);
+
+// home
+Route::get('/home', [HomeFrontendController::class, 'index']);
 
 
 //Backend

@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-fluid">
         <!--  Row 1 -->
-        <p>Semoga berhasil</p>
+        <p>Untuk mengubah foto dan tittle yang ada di Hero</p>
         <div class="row">
           <div class="col-lg-12 d-flex align-items-stretch">
             <div class="card w-100">

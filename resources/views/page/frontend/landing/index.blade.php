@@ -29,18 +29,18 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-4">
-            @foreach ($activeService as $service)
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s" style="margin-bottom: 1.5rem;">
-                    <div class="service-item text-center pt-3" style="border: 1px solid #ddd; border-radius: 8px; padding: 1rem; height: 100%;">
-                        <div class="p-4">
-                            <img src="{{ asset('storage/' . $service->photo) }}" width="80" alt="Service" class="mb-4">
-                            <h5 class="mb-3">{{ $service->title }}</h5>
-                            <p>{{ $service->description }}</p>
+                @foreach ($activeService as $service)
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s" style="margin-bottom: 1.5rem;">
+                        <div class="service-item text-center pt-3" style="border: 1px solid #ddd; border-radius: 8px; padding: 1rem; height: 100%;">
+                            <div class="p-4">
+                                <img src="{{ asset('storage/' . $service->photo) }}" width="80" alt="Service" class="mb-4">
+                                <h5 class="mb-3">{{ $service->title }}</h5>
+                                <p>{{ $service->description }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
     </div>
     <!-- Service End -->
@@ -59,7 +59,7 @@
                     <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
                     <h1 class="mb-4">Welcome to eLEARNING</h1>
                     <p class="mb-4">{{ $about->description }}</p>
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="/about">Read More</a>
                 </div>
             </div>
             @endforeach
@@ -69,77 +69,8 @@
 
 
     <!-- Galeri Start -->
-    <div class="container-xxl py-5 category">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="mb-5">Galeri</h1>
-            </div>
-            <div class="row g-3">
-                {{-- Kolom Kiri: 1 besar + 2 kecil --}}
-                <div class="col-lg-7 col-md-6">
-                    <div class="row g-3">
-                        {{-- Item 1: Besar full width kiri atas (index 0) --}}
-                        @if($activeGallery->count() > 0)
-                            @foreach($activeGallery->slice(0, 1) as $gallery)  {{-- Ambil hanya item pertama --}}
-                                <div class="col-lg-12 col-md-12 wow zoomIn"
-                                    data-wow-delay="{{ $loop->parent->index % 4 == 0 ? '0.1s' : ($loop->parent->index % 4 == 1 ? '0.3s' : ($loop->parent->index % 4 == 2 ? '0.5s' : '0.7s')) }}">
-                                    <a class="position-relative d-block overflow-hidden" href="{{ asset('storage/' . $gallery->photo) }}">
-                                        <img class="img-fluid"
-                                            src="{{ asset('storage/' . $gallery->photo) }}"
-                                            alt="{{ $gallery->description ?? 'Galeri Foto' }}">
-                                    </a>
-                                </div>
-                            @endforeach
-                        @endif
 
-                        {{-- Item 2 & 3: 2 kecil half width kiri bawah (index 1 & 2) --}}
-                        @if($activeGallery->count() > 1)
-                            @foreach($activeGallery->slice(1, 2) as $gallery)  {{-- Ambil item 2 & 3 --}}
-                                <div class="col-lg-6 col-md-12 wow zoomIn"
-                                    data-wow-delay="{{ ($loop->parent->index + 1) % 4 == 0 ? '0.1s' : (($loop->parent->index + 1) % 4 == 1 ? '0.3s' : (($loop->parent->index + 1) % 4 == 2 ? '0.5s' : '0.7s')) }}">
-                                    <a class="position-relative d-block overflow-hidden" href="{{ asset('storage/' . $gallery->photo) }}">
-                                        <img class="img-fluid"
-                                            src="{{ asset('storage/' . $gallery->photo) }}"
-                                            alt="{{ $gallery->description ?? 'Galeri Foto' }}">
-                                    </a>
-                                </div>
-                            @endforeach
-                        @endif
-                    </div>
-                </div>
-
-                {{-- Kolom Kanan: 1 besar vertikal (index 3) --}}
-                <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
-                    @if($activeGallery->count() > 3)
-                        @foreach($activeGallery->slice(3, 1) as $gallery)  {{-- Ambil item ke-4 --}}
-                            <a class="position-relative d-block h-100 overflow-hidden" href="{{ asset('storage/' . $gallery->photo) }}">
-                                <img class="img-fluid position-absolute w-100 h-100"
-                                    src="{{ asset('storage/' . $gallery->photo) }}"
-                                    alt="{{ $gallery->description ?? 'Galeri Foto' }}"
-                                    style="object-fit: cover;">
-                            </a>
-                        @endforeach
-                </div>
-            </div>
-
-            {{-- Opsi: Jika data >4, tambah row ekstra di bawah untuk item sisanya --}}
-            @if($activeGallery->count() > 4)
-                <div class="row g-3 mt-4">
-                    @foreach($activeGallery->slice(4) as $gallery)
-                        <div class="col-lg-3 col-md-6 wow zoomIn"
-                            data-wow-delay="{{ $loop->index % 4 == 0 ? '0.1s' : ($loop->index % 4 == 1 ? '0.3s' : ($loop->index % 4 == 2 ? '0.5s' : '0.7s')) }}">
-                            <a class="position-relative d-block overflow-hidden" href="{{ asset('storage/' . $gallery->photo) }}">
-                                <img class="img-fluid"
-                                    src="{{ asset('storage/' . $gallery->photo) }}"
-                                    alt="{{ $gallery->description ?? 'Galeri Foto' }}">
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            @endif
-        </div>
-    </div>
-<!-- Galeri End -->
+    <!-- Galeri End -->
 
 
     <!-- Courses Start -->
@@ -188,8 +119,8 @@
                 <h1 class="mb-5">Expert Instructors</h1>
             </div>
             <div class="row g-4">
+                @foreach ( $activeTenagakerja as $tenagakerja)
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    @foreach ( $activeTenagakerja as $tenagakerja)
                     <div class="team-item bg-light">
                         <div class="overflow-hidden">
                             <img class="img-fluid" src="{{ asset('storage/' . $tenagakerja->photo) }}" alt="">
@@ -208,8 +139,8 @@
                             <small>{{ $tenagakerja->description }}</small>
                         </div>
                     </div>
-                    @endforeach
                 </div>
+                @endforeach
             </div>
         </div>
     </div>
