@@ -8,38 +8,16 @@
                 <h1 class="mb-5">Our Students Say!</h1>
             </div>
             <div class="owl-carousel testimonial-carousel position-relative">
+                @foreach ( $activeTestimoni as $testimoni )
                 <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="{{ asset('assetsfrontend/img/testimoni-1.jpg') }}" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
+                    <img class="border rounded-circle p-2 mx-auto mb-3" src="{{ asset('storage/' . $testimoni->photo_profile) }}" style="width: 80px; height: 80px;">
+                    <h5 class="mb-0">{{ $testimoni->name }}</h5>
+                    <p>{{ $testimoni->rating }}</p>
                     <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                    <p class="mb-0">{{ $testimoni->description }}</p>
                     </div>
                 </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="{{ asset('assetsfrontend/img/testimoni-2.jpg') }}" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="{{ asset('assetsfrontend/img/testimoni-3.jpg') }}" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="{{ asset('assetsfrontend/img/testimoni-4.jpg') }}" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
+                 @endforeach
             </div>
         </div>
     </div>

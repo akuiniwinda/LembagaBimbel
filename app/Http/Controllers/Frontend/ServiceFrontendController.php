@@ -9,7 +9,7 @@ class ServiceFrontendController extends Controller
 {
     public function index()
     {
-        $aktifService = Service::where('is_active', 1)->get();
+        $activeService = Service::where('is_active', 1)->get();
 
         return view('page.frontend.service.index', compact('activeService'));
     }

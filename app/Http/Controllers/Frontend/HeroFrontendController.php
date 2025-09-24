@@ -13,11 +13,9 @@ class HeroFrontendController extends Controller
 
         // Ambil hanya hero dengan status aktif
         $activeHeros = Hero::where('is_active', 'active')->get();
-        $activeService = Service::where('is_active', 'active')->get();
-
 
         // Kirim data ke view landing page
-        return view('page.frontend.landing.index', compact('activeHeros', 'activeService'));
+        return view('page.frontend.home.index', compact('activeHeros'));
 
     }
 }

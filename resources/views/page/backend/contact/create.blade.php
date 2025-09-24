@@ -1,4 +1,4 @@
-@extends('layout.backend.app')
+@extends('layout.backend.appform')
 @section('content')
     <div class="container-fluid">
         <div class="container-fluid">

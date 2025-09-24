@@ -1,6 +1,6 @@
 @extends('layout.frontend.app')
 @section('content')
-    <!-- Service Start -->
+<!-- Service Start -->
 <div class="container-xxl py-5">
     <div class="container">
         <div class="row g-4">

@@ -18,7 +18,7 @@
             </li>
 
             <!-- dashboard-->
-            <li class="sidebar-item">
+            <li class="sidebar-item .sidebar-item.active .sidebar-link {{ Request::is('adminpanel/hero') ? 'active' : '' }}">
               <a class="sidebar-link" href="/adminpanel/hero" aria-expanded="false">
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
@@ -27,7 +27,7 @@
               </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item .sidebar-item.active .sidebar-link {{ Request::is('adminpanel/about') ? 'active' : '' }}"">
               <a class="sidebar-link" href="/adminpanel/about" aria-expanded="false">
                 <span>
                   <i class="ti ti-info-circle"></i>
@@ -36,7 +36,7 @@
               </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item .sidebar-item.active .sidebar-link {{ Request::is('adminpanel/service') ? 'active' : '' }}"">
               <a class="sidebar-link" href="/adminpanel/service" aria-expanded="false">
                 <span>
                   <i class="ti ti-server"></i>
@@ -45,7 +45,7 @@
               </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item .sidebar-item.active .sidebar-link {{ Request::is('adminpanel/courses') ? 'active' : '' }}"">
               <a class="sidebar-link" href="/adminpanel/courses" aria-expanded="false">
                 <span>
                   <i class="ti ti-analyze"></i>
@@ -54,7 +54,7 @@
               </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item .sidebar-item.active .sidebar-link {{ Request::is('adminpanel/gallery') ? 'active' : '' }}"">
               <a class="sidebar-link" href="/adminpanel/gallery" aria-expanded="false">
                 <span>
                   <i class="ti ti-photo"></i>
@@ -63,7 +63,7 @@
               </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item .sidebar-item.active .sidebar-link {{ Request::is('adminpanel/testimoni') ? 'active' : '' }}"">
               <a class="sidebar-link" href="/adminpanel/testimoni" aria-expanded="false">
                 <span>
                   <i class="ti ti-message-circle"></i>
@@ -72,7 +72,7 @@
               </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item .sidebar-item.active .sidebar-link {{ Request::is('adminpanel/tenagakerja') ? 'active' : '' }}"">
               <a class="sidebar-link" href="/adminpanel/tenagakerja" aria-expanded="false">
                 <span>
                   <i class="ti ti-users"></i>
@@ -81,7 +81,7 @@
               </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item .sidebar-item.active .sidebar-link {{ Request::is('adminpanel/partner') ? 'active' : '' }}"">
               <a class="sidebar-link" href="/adminpanel/partner" aria-expanded="false">
                 <span>
                   <i class="ti ti-heart-handshake"></i>
@@ -90,7 +90,7 @@
               </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item .sidebar-item.active .sidebar-link {{ Request::is('adminpanel/contact') ? 'active' : '' }}"">
               <a class="sidebar-link" href="/adminpanel/contact" aria-expanded="false">
                 <span>
                   <i class="ti ti-phone"></i>
@@ -99,7 +99,7 @@
               </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item .sidebar-item.active .sidebar-link {{ Request::is('adminpanel/mediasosial') ? 'active' : '' }}"">
               <a class="sidebar-link" href="/adminpanel/mediasosial" aria-expanded="false">
                 <span>
                   <i class="ti ti-brand-abstract"></i>
@@ -107,23 +107,6 @@
                 <span class="hide-menu">Media Sosial</span>
               </a>
             </li>
-
-            <!-- Auth -->
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">AUTH</span>
-            </li>
-
-            <!--Login-->
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-login"></i>
-                </span>
-                <span class="hide-menu">Login</span>
-              </a>
-            </li>
-
           </ul>
         </nav>
         <!-- End Sidebar navigation -->
