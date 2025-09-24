@@ -56,8 +56,8 @@
                                 </td>
                                 <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2">
-                                    <a class="badge bg-success rounded-3 fw-semibold" href="/adminpanel/about/edit/{{$testimonal->id}}">Edit</a>
-                                    <a class="badge bg-danger rounded-3 fw-semibold" href="/adminpanel/about/delete/{{$testimonal->id}}">Delete</a>
+                                    <a class="badge bg-success rounded-3 fw-semibold" href="/adminpanel/testimoni/edit/{{$testimonal->id}}">Edit</a>
+                                    <a class="badge bg-danger rounded-3 fw-semibold" href="/adminpanel/testimoni/delete/{{$testimonal->id}}">Delete</a>
                                 </div>
                                 </td>
                                 </tr>

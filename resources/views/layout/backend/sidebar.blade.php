@@ -17,8 +17,8 @@
               <span class="hide-menu">Home</span>
             </li>
 
-            <li class="sidebar-item">
-              <a class="sidebar-link .sidebar-item.active .sidebar-link {{ Request::is('adminpanel/hero') ? 'active' : '' }}" href="/dashboard" aria-expanded="false">
+            <li class="sidebar-item .sidebar-item.active .sidebar-link {{ Request::is('/adminpanel/dashboard') ? 'active' : '' }}">
+              <a class="sidebar-link" href="/adminpanel/dashboard" aria-expanded="false">
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
