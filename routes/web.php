@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\PartnerBackendController;
 use App\Http\Controllers\Backend\ServiceBackendController;
 use App\Http\Controllers\Frontend\AboutFrontendController;
 use App\Http\Controllers\Frontend\GaleriFrontendController;
+use App\Http\Controllers\Backend\DashboardBackendController;
 use App\Http\Controllers\Backend\TestimoniBackendController;
 use App\Http\Controllers\Frontend\ContactFrontendController;
 use App\Http\Controllers\Frontend\CoursesFrontendController;
@@ -64,6 +65,9 @@ Route::get('/login', [AuthenticationBackendController::class, 'showLoginForm'])-
 Route::post('/login', [AuthenticationBackendController::class, 'login'])->name('login.process');
 Route::post('/logout', [AuthenticationBackendController::class, 'logout'])->name('logout');
 
+//Dashboard
+//Hero
+Route::get('/adminpanel/dashboard', [DashboardBackendController::class, 'index']);
 
 //Hero
 Route::get('/adminpanel/hero', [HeroBackendController::class, 'index']);
@@ -104,8 +108,8 @@ Route::post('/adminpanel/gallery/toggle-active/{id}', [GalleryBackendController:
 
 //contact
 Route::get('/adminpanel/contact', [ContactBackendController::class, 'index']);
-Route::get('/adminpanel/contact/create', [ContactBackendController::class,'create']);
-Route::post('/adminpanel/contact/store', [ContactBackendController::class,'store']);
+Route::get('/contact/create', [ContactBackendController::class,'create']);
+Route::post('/contact/store', [ContactBackendController::class,'store']);
 Route::get('/adminpanel/contact/delete/{id}', [ContactBackendController::class, 'destroy']);
 Route::get('/adminpanel/contact/edit/{id}', [ContactBackendController::class,'edit']);
 Route::post('/adminpanel/contact/update/{id}', [ContactBackendController::class, 'update']);
