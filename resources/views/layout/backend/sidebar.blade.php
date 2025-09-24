@@ -17,7 +17,16 @@
               <span class="hide-menu">Home</span>
             </li>
 
-            <!-- dashboard-->
+            <li class="sidebar-item">
+              <a class="sidebar-link .sidebar-item.active .sidebar-link {{ Request::is('adminpanel/hero') ? 'active' : '' }}" href="/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+
+            <!-- hero-->
             <li class="sidebar-item .sidebar-item.active .sidebar-link {{ Request::is('adminpanel/hero') ? 'active' : '' }}">
               <a class="sidebar-link" href="/adminpanel/hero" aria-expanded="false">
                 <span>

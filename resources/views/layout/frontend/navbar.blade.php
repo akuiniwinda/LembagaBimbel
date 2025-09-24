@@ -8,22 +8,22 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="/home" class="nav-item nav-link active">Home</a>
-                <a href="/about" class="nav-item nav-link">About</a>
-                <a href="/courses" class="nav-item nav-link">Courses</a>
+                <a href="/home" class="nav-item nav-link {{ Request::is('home') ? 'active' : '' }}">Home</a>
+                <a href="/about" class="nav-item nav-link  {{ Request::is('/about') ? 'active' : '' }}">About</a>
+                <a href="/courses" class="nav-item nav-link {{ Request::is('/courses') ? 'active' : '' }}">Courses</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <a href="/team" class="dropdown-item">Our Team</a>
-                        <a href="/testimonial" class="dropdown-item">Testimonial</a>
-                        <a href="/service" class="dropdown-item">Service</a>
-                        <a href="/galeri" class="dropdown-item">Galeri</a>
-                        <a href="/partners" class="dropdown-item">Partners</a>
+                        <a href="/team" class="dropdown-item {{ Request::is('/team') ? 'active' : '' }}">Our Team</a>
+                        <a href="/testimonial" class="dropdown-item {{ Request::is('/testimonial') ? 'active' : '' }}">Testimonial</a>
+                        <a href="/service" class="dropdown-item {{ Request::is('/service') ? 'active' : '' }}">Service</a>
+                        <a href="/galeri" class="dropdown-item {{ Request::is('/galeri') ? 'active' : '' }}">Galeri</a>
+                        <a href="/partners" class="dropdown-item {{ Request::is('/partners') ? 'active' : '' }}">Partners</a>
                     </div>
                 </div>
-                <a href="/adminpanel/contact/create" class="nav-item nav-link">Contact</a>
+                <a href="/contact/create" class="nav-item nav-link {{ Request::is('contact/create') ? 'active' : '' }}">Contact</a>
             </div>
-            <a href="/adminpanel/contact/create" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="/contact/create" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
