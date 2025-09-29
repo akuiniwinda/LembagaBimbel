@@ -32,7 +32,7 @@ class PartnerBackendController extends Controller
         ];
 
         //upload foto
-        $datapartners_store['photo'] = $request->file('photo')->store('imgparner', 'public');
+        $datapartners_store['photo'] = $request->file('photo')->store('imgpartner', 'public');
 
         Partner::create($datapartners_store);
 
@@ -102,7 +102,7 @@ class PartnerBackendController extends Controller
             Storage::disk('public')->delete($dataparnerse->photo);
 
             //upload gambar
-            $datapartner_update['photo'] = $request->file('photo')->store('imgpartner', 'public');
+           $datapartner_update['photo'] = $request->file('photo')->store('imgpartner', 'public');
         }
 
         //simpan data ke dalam base dengan data yang terbaru sesuai update
@@ -112,14 +112,19 @@ class PartnerBackendController extends Controller
         return redirect('/adminpanel/partner');
     }
 
-    public function toggleActive(Request $request, $id){
-        $partner = Partner::findOrFail($id);
-        $partner->is_active = $request->is_active == 1 ? 'active' : 'inactive';
-        $partner->save();
+    public function toggleActive(Request $request, $id)
+{
+    $request->validate([
+        'is_active' => 'required|in:0,1'
+    ]);
 
-        return response()->json([
-            'success'   => true,
-            'is_active' => $partner->is_active
-        ]);
-    }
+    $partner = Partner::findOrFail($id);
+    $partner->is_active = $request->is_active == 1 ? 'active' : 'inactive';
+    $partner->save();
+
+    return response()->json([
+        'success' => true,
+        'is_active' => $partner->is_active
+    ]);
+}
 }

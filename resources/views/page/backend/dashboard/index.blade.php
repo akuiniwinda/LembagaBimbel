@@ -27,22 +27,30 @@
 
     <!-- Service Start -->
     <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-4">
-                @foreach ($activeService as $service)
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s" style="margin-bottom: 1.5rem;">
-                        <div class="service-item text-center pt-3" style="border: 1px solid #ddd; border-radius: 8px; padding: 1rem; height: 100%;">
-                            <div class="p-4">
-                                <img src="{{ asset('storage/' . $service->photo) }}" width="80" alt="Service" class="mb-4">
-                                <h5 class="mb-3">{{ $service->title }}</h5>
-                                <p>{{ $service->description }}</p>
-                            </div>
+    <div class="container">
+        <div class="row g-4 justify-content-center">
+            @forelse($activeService as $service)
+                <div class="col-lg-3 col-md-6 col-sm-10 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item h-100 text-center p-4 rounded-3 border border-light shadow-sm bg-white transition"
+                         style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <div class="mb-4">
+                            <img src="{{ asset('storage/' . $service->photo) }}"
+                                 alt="{{ $service->title }}"
+                                 class="img-fluid rounded-circle"
+                                 style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #f8f9fa;">
                         </div>
+                        <h5 class="mb-3 fw-semibold">{{ $service->title }}</h5>
+                        <p class="text-muted mb-0">{{ Str::limit($service->description, 120) }}</p>
                     </div>
-                @endforeach
-            </div>
+                </div>
+            @empty
+                <div class="col-12 text-center">
+                    <p class="text-muted">No active services available.</p>
+                </div>
+            @endforelse
         </div>
     </div>
+</div>
     <!-- Service End -->
 
     <!-- About Start -->

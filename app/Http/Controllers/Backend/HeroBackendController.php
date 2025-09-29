@@ -9,17 +9,20 @@ use Illuminate\Support\Facades\Storage;
 
 class HeroBackendController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $heros = Hero::all();
         return view('page.backend.hero.index', compact('heros'));
     }
 
-    public function create(){
+    public function create()
+    {
         $heros = Hero::all();
         return view('page.backend.hero.create', compact('heros'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'photo'       => 'required|image|mimes:jpeg,png,jpg,gif',
             'title'       => 'required',
@@ -28,7 +31,7 @@ class HeroBackendController extends Controller
 
         $datahero_store = [
             'title'       => $request->title,
-            'is_active'   => $request->has('is_active') ? 'active' : 'no_active',
+            'is_active' => $request->has('is_active') ? 'active' : 'no_active',
         ];
 
         //upload foto
@@ -45,10 +48,11 @@ class HeroBackendController extends Controller
         return redirect('/adminpanel/hero');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $datahero = Hero::find($id);
 
-        if ($datahero != null){
+        if ($datahero != null) {
             Storage::disk('public')->delete($datahero->photo);
             $datahero->delete();
         }
@@ -56,12 +60,13 @@ class HeroBackendController extends Controller
         return redirect('/adminpanel/hero');
     }
 
-    public function show($id){
+    public function show($id)
+    {
         //cari ke tabel kelas di database sesuai atau berdasarkan id kelas ada atau tidak
         $datahiros = Hero::find($id);
 
         //cek apakah datanya ada atau tidak
-        if($datahiros == null){
+        if ($datahiros == null) {
             return redirect('/adminpanel/hero');
         }
 
@@ -70,7 +75,8 @@ class HeroBackendController extends Controller
         return view('page.backend.hero.show', compact('datahiros'));
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         //siapkan data atau panggil kelas
         $heros = Hero::all();
 
@@ -78,15 +84,15 @@ class HeroBackendController extends Controller
         $datahiros = Hero::find($id);
 
         //cek apakah datanya ada atau tidak
-        if($datahiros == null){
+        if ($datahiros == null) {
             return redirect('/adminpanel/hero');
         }
 
         return view('page.backend.hero.edit', compact('heros', 'datahiros'));
-
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         //validasi data
         $request->validate([
             'photo'       => 'nullable|image|mimes:jpeg,png,jpg,gif',
@@ -100,10 +106,10 @@ class HeroBackendController extends Controller
         //siapkan data yang akan disiampan sebagai update
         $datahero_update = [
             'title'       => $request->title,
-            'is_active'   => $request->has('is_active') ? 'active' : 'no_active',
+            'is_active' => $request->has('is_active') ? 'active' : 'no_active',
         ];
 
-        if ($request->hasFile('photo')){
+        if ($request->hasFile('photo')) {
             //hapus file gambar sebelumnya
             Storage::disk('public')->delete($datahero->photo);
 
@@ -118,9 +124,10 @@ class HeroBackendController extends Controller
         return redirect('/adminpanel/hero');
     }
 
-    public function toggleActive(Request $request, $id){
+    public function toggleActive(Request $request, $id)
+    {
         $hero = Hero::findOrFail($id);
-        $hero->is_active = $request->is_active == 1 ? 'active' : 'inactive';
+        $hero->is_active = $request->is_active == 1 ? 'active' : 'no_active';
         $hero->save();
 
         return response()->json([
@@ -128,5 +135,4 @@ class HeroBackendController extends Controller
             'is_active' => $hero->is_active
         ]);
     }
-
 }

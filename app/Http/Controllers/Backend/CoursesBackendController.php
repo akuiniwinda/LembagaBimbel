@@ -9,17 +9,20 @@ use Illuminate\Support\Facades\Storage;
 
 class CoursesBackendController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $courses = Courses::all();
         return view('page.backend.courses.index', compact('courses'));
     }
 
-    public function create(){
+    public function create()
+    {
         $courses = Courses::all();
         return view('page.backend.courses.create', compact('courses'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'photo'             => 'required |image|mimes:jpeg,png,jpg,gif',
             'title'             => 'required',
@@ -33,10 +36,10 @@ class CoursesBackendController extends Controller
         $datacourses_store = [
             'title'             => $request->title,
             'harga'             => $request->harga,
-            'name'              =>$request->name,
-            'time'              =>$request->time,
-            'student'           =>$request->student,
-            'is_active'         => $request->has('status') ? 'active' : 'no_active',
+            'name'              => $request->name,
+            'time'              => $request->time,
+            'student'           => $request->student,
+            'is_active' => $request->has('is_active') ? 'active' : 'no_active',
         ];
 
         //upload foto
@@ -47,10 +50,11 @@ class CoursesBackendController extends Controller
         return redirect('/adminpanel/courses');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $datacours = Courses::find($id);
 
-        if ($datacours != null){
+        if ($datacours != null) {
             Storage::disk('public')->delete($datacours->photo);
             $datacours->delete();
         }
@@ -58,12 +62,13 @@ class CoursesBackendController extends Controller
         return redirect('/adminpanel/courses');
     }
 
-    public function show($id){
+    public function show($id)
+    {
         //cari ke tabel kelas di database sesuai atau berdasarkan id kelas ada atau tidak
         $datakursus = Courses::find($id);
 
         //cek apakah datanya ada atau tidak
-        if($datakursus == null){
+        if ($datakursus == null) {
             return redirect('/adminpanel/courses');
         }
 
@@ -72,7 +77,8 @@ class CoursesBackendController extends Controller
         return view('page.backend.courses.show', compact('datakursus'));
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         //siapkan data atau panggil kelas
         $kursus = Courses::all();
 
@@ -80,15 +86,15 @@ class CoursesBackendController extends Controller
         $datakursus = Courses::find($id);
 
         //cek apakah datanya ada atau tidak
-        if($datakursus == null){
+        if ($datakursus == null) {
             return redirect('/adminpanel/courses');
         }
 
         return view('page.backend.courses.edit', compact('kursus', 'datakursus'));
-
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         //validasi data
         $request->validate([
             'photo'             => 'required |image|mimes:jpeg,png,jpg,gif',
@@ -107,13 +113,13 @@ class CoursesBackendController extends Controller
         $datacourses_update = [
             'title'             => $request->title,
             'harga'             => $request->harga,
-            'name'              =>$request->name,
-            'time'              =>$request->time,
-            'student'           =>$request->student,
-            'is_active'         => $request->has('status') ? 'active' : 'no_active',
+            'name'              => $request->name,
+            'time'              => $request->time,
+            'student'           => $request->student,
+            'is_active' => $request->has('is_active') ? 'active' : 'no_active',
         ];
 
-        if ($request->hasFile('photo')){
+        if ($request->hasFile('photo')) {
             //hapus file gambar sebelumnya
             Storage::disk('public')->delete($datakursus->photo);
 
@@ -128,9 +134,10 @@ class CoursesBackendController extends Controller
         return redirect('/adminpanel/courses');
     }
 
-    public function toggleActive(Request $request, $id){
+    public function toggleActive(Request $request, $id)
+    {
         $courses = Courses::findOrFail($id);
-        $courses->is_active = $request->is_active == 1 ? 'active' : 'inactive';
+        $courses->is_active = $request->is_active == 1 ? 'active' : 'no_active';
         $courses->save();
 
         return response()->json([

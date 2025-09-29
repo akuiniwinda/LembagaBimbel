@@ -62,7 +62,7 @@
                                 <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2" >
                                     <div class="form-check form-switch float-left custom-switch">
-                                        <input class="form-check-input" type="checkbox" id="is_active_{{$kursuse->id}}" name="is_active" {{ $kursuse->is_active === 'active' ? 'checked' : '' }} data-id="{{ $kursuse->id }}">
+                                        <input class="form-check-input toggle-active" type="checkbox" id="is_active_{{$kursuse->id}}" name="is_active" {{ $kursuse->is_active === 'active' ? 'checked' : '' }} data-id="{{ $kursuse->id }}">
                                     </div>
                                 </div>
                                 </td>

@@ -9,110 +9,106 @@ use Illuminate\Support\Facades\Storage;
 
 class AboutBackendController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $aboutes = About::all();
         return view('page.backend.about.index', compact('aboutes'));
     }
 
-    public function create(){
-        $aboutes = About::all();
-        return view('page.backend.about.create', compact('aboutes'));
+    public function create()
+    {
+        return view('page.backend.about.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
-            'photo'             => 'required |image|mimes:jpeg,png,jpg,gif',
-            'description'       => 'required',
-            'is_active'         => 'nullable|in:active,no_active'
+            'photo'       => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required',
         ]);
 
-        $databout_store = [
-            'description'       => $request->description,
-            'is_active'         => $request->has('status') ? 'active' : 'no_active',
-        ];
+        // Simpan file photo
+        $photoPath = $request->file('photo')->store('imgabout', 'public');
 
-        //upload foto
-        $databout_store['photo'] = $request->file('photo')->store('imgabout', 'public');
+        $databout_store = [
+            'photo'       => $photoPath,
+            'description' => $request->description,
+            'is_active'   => $request->has('status') ? 'active' : 'no_active',
+        ];
 
         About::create($databout_store);
 
-        return redirect('/adminpanel/about');
+        return redirect('/adminpanel/about')->with('success', 'Data berhasil ditambahkan');
     }
 
-    public function destroy($id){
+
+    public function destroy($id)
+    {
         $databout = About::find($id);
 
-        if ($databout != null){
+        if ($databout) {
             Storage::disk('public')->delete($databout->photo);
             $databout->delete();
         }
 
-        return redirect('/adminpanel/about');
+        return redirect('/adminpanel/about')->with('success', 'Data berhasil dihapus');
     }
 
-    public function show($id){
-        //cari ke tabel kelas di database sesuai atau berdasarkan id kelas ada atau tidak
+    public function show($id)
+    {
         $databouts = About::find($id);
 
-        //cek apakah datanya ada atau tidak
-        if($databouts == null){
-            return redirect('/adminpanel/about');
+        if (!$databouts) {
+            return redirect('/adminpanel/about')->with('error', 'Data tidak ditemukan');
         }
-
-        //kembalikan kelas ke halaman show dan kembalikan data user yang di ambil
 
         return view('page.backend.about.show', compact('databouts'));
     }
 
-    public function edit($id){
-        //siapkan data atau panggil kelas
-        $abouts = About::all();
-
-        //amabil data user atau siswa di tabel user berdasar kan id
+    public function edit($id)
+    {
         $databouts = About::find($id);
 
-        //cek apakah datanya ada atau tidak
-        if($databouts == null){
-            return redirect('/adminpanel/about');
+        if (!$databouts) {
+            return redirect('/adminpanel/about')->with('error', 'Data tidak ditemukan');
         }
 
-        return view('page.backend.about.edit', compact('abouts', 'databouts'));
-
+        return view('page.backend.about.edit', compact('databouts'));
     }
 
-    public function update(Request $request, $id){
-        //validasi data
+    public function update(Request $request, $id)
+    {
         $request->validate([
-            'photo'            => 'required |image|mimes:jpeg,png,jpg,gif',
-            'description'      => 'required'
+            'photo'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required'
         ]);
 
-        //cari apakah ada user di tabel yang akan di update cari berdasarkan id
         $databout = About::find($id);
 
-        //siapkan data yang akan disiampan sebagai update
+        if (!$databout) {
+            return redirect('/adminpanel/about')->with('error', 'Data tidak ditemukan');
+        }
+
         $databout_update = [
-            'description'      => $request->description,
+            'description' => $request->description,
+            'is_active'   => $request->has('status') ? 'active' : 'no_active',
         ];
 
-        if ($request->hasFile('photo')){
-            //hapus file gambar sebelumnya
+        if ($request->hasFile('photo')) {
             Storage::disk('public')->delete($databout->photo);
-
-            //upload gambar
             $databout_update['photo'] = $request->file('photo')->store('imgabout', 'public');
         }
 
-        //simpan data ke dalam base dengan data yang terbaru sesuai update
         $databout->update($databout_update);
 
-        //simpan data ke halaman beranda
-        return redirect('/adminpanel/about');
+        return redirect('/adminpanel/about')->with('success', 'Data berhasil diperbarui');
     }
 
-    public function toggleActive(Request $request, $id){
+
+    public function toggleActive(Request $request, $id)
+    {
         $about = About::findOrFail($id);
-        $about->is_active = $request->is_active == 1 ? 'active' : 'inactive';
+        $about->is_active = $request->is_active == 1 ? 'active' : 'no_active';
         $about->save();
 
         return response()->json([

@@ -24,6 +24,7 @@ use App\Http\Controllers\Backend\MediaSosialBackendController;
 use App\Http\Controllers\Backend\TenagaKerjaBackendController;
 use App\Http\Controllers\Frontend\TestimonialFrontendController;
 use App\Http\Controllers\Backend\AuthenticationBackendController;
+use App\Http\Controllers\Frontend\TeamFrontendController;
 
 //Frontend
 //landingpage
@@ -53,6 +54,9 @@ Route::get('/galeri', [GaleriFrontendController::class, 'index']);
 
 // Partners
 Route::get('/partners', [PartnersFrontendController::class, 'index']);
+
+// team
+Route::get('/team', [TeamFrontendController::class, 'index']);
 
 // home
 Route::get('/home', [HomeFrontendController::class, 'index']);
