@@ -109,9 +109,9 @@ Route::post('/adminpanel/gallery/toggle-active/{id}', [GalleryBackendController:
 //contact
 Route::get('/adminpanel/contact', [ContactBackendController::class, 'index']);
 Route::get('/contact/create', [ContactBackendController::class,'create']);
-Route::post('/contact/store', [ContactBackendController::class,'store']);
+Route::post('/adminpanel/contact/store', [ContactBackendController::class,'store']);
 Route::get('/adminpanel/contact/delete/{id}', [ContactBackendController::class, 'destroy']);
-Route::get('/adminpanel/contact/edit/{id}', [ContactBackendController::class,'edit']);
+Route::get('/adminpanel/contact/show/{id}', [ContactBackendController::class,'show']);
 Route::post('/adminpanel/contact/update/{id}', [ContactBackendController::class, 'update']);
 Route::post('/adminpanel/contact/toggle-active/{id}', [ContactBackendController::class, 'toggleActive']);
 
