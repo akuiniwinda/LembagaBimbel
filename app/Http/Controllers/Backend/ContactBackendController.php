@@ -15,7 +15,7 @@ class ContactBackendController extends Controller
 
     public function create(){
         $contacts = Contact::all();
-        return view('page.backend.contact.create', compact('contacts'));
+        return view('page.frontend.contact.index', compact('contacts'));
     }
 
     public function store(Request $request){
@@ -36,7 +36,7 @@ class ContactBackendController extends Controller
 
         Contact::create($datacontact_store);
 
-        return redirect('/adminpanel/contact');
+        return redirect('/');
     }
 
     public function destroy($id){
@@ -50,16 +50,18 @@ class ContactBackendController extends Controller
     }
 
     public function show($id){
-        //cari ke tabel kelas di database sesuai atau berdasarkan id kelas ada atau tidak
-        $datacontacts = Contact::find($id);
-
-        //cek apakah datanya ada atau tidak
+        // Cari data kontak di database berdasarkan ID
+        $datacontacts = Contact::find($id); // Tetap pakai find() seperti asli
+        // Cek apakah data ada (tetap seperti asli, tapi tambah message)
         if($datacontacts == null){
-            return redirect('/adminpanel/contact');
+            return redirect('/adminpanel/contact')->with('error', 'Data kontak dengan ID ' . $id . ' tidak ditemukan!');
         }
-
-        //kembalikan kelas ke halaman show dan kembalikan data user yang di ambil
-
+        // Auto-mark as seen (tambahan untuk fitur "sudah dilihat dari detail")
+        if (!$datacontacts->is_active) {
+            $datacontacts->is_active = 1;
+            $datacontacts->save();
+        }
+        // Kembalikan view (tetap seperti asli)
         return view('page.backend.contact.show', compact('datacontacts'));
     }
 

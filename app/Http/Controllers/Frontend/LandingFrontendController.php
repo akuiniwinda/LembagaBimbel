@@ -19,11 +19,11 @@ class LandingFrontendController extends Controller
     public function index(){
         // Ambil hanya hero dengan status aktif
 
-        $activeAbout = About::where('is_active', 'active')->get();
+        $activeAbout = About::where('is_active', 'active')->first();
 
         $activeService = Service::where('is_active', 'active')->get();
 
-        $activeHeros = Hero::where('is_active', 'active')->get();
+        $activeHeros = Hero::where('is_active', 'active')->first();
 
         $activeTestimoni = Testimoni::where('is_active', 'active')->get();
 

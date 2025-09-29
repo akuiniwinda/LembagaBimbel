@@ -11,7 +11,7 @@ class AboutFrontendController extends Controller
     public function index()
     {
         // Ambil data About yang aktif
-        $activeAbout = About::where('is_active', 'active')->get();
+        $activeAbout = About::where('is_active', 'active')->first();
 
         // Kirim ke view
         return view('page.frontend.about.index', compact('activeAbout',));
