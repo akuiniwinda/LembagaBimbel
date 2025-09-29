@@ -1,6 +1,5 @@
 @extends('layout.frontend.app')
 @section('content')
-
     <!-- Carousel Start -->
     <div class="container-fluid p-0 mb-5">
         <div class="owl-carousel header-carousel position-relative">
@@ -14,7 +13,7 @@
                                 <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Bimbel Kekinian untuk Generasi Digital</h5>
                                 <h1 class="display-3 text-white animated slideInDown">{{ $hero->title }}</h1>
                                 <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
-                                <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
+                                <a href="/contact" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
                             </div>
                         </div>
                     </div>
