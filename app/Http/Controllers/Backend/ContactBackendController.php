@@ -46,7 +46,7 @@ class ContactBackendController extends Controller
             $datacontact->delete();
         }
 
-        return redirect('/adminpanel/contact');
+        return redirect('/adminpanel/contact')->with('success', 'Terimakasih sudah mengisi form untuk mendapatkan informasi lebih lanjut tentang program bimbingan belajar kami. Tim kami akan segera menghubungi anda.');
     }
 
     public function show($id){

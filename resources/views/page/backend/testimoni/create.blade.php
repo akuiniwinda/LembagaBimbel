@@ -31,11 +31,14 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                      <label class="form-label">Rating</label>
-                      <input type="number" step="0.01" min="0" max="5" class="form-control" name="rating">
-                        @error('rating')
-	                        <small style="color:red">{{$message}}</small>
-                        @enderror
+                        <label class="form-label d-block">Rating</label>
+
+                        <div class="rating">
+                            @for ($i = 5; $i >= 1; $i--)
+                                <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}">
+                                <label for="star{{ $i }}">★</label>
+                            @endfor
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-custom">Simpan</button>
                   </form>

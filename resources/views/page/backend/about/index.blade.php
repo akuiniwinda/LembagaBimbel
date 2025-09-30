@@ -36,12 +36,16 @@
                                     <h6 class="fw-semibold mb-1">{{$bout->description}}</h6>
                                 </td>
                                 <td class="border-bottom-0">
-                                <td class="border-bottom-0">
-                                <div class="d-flex align-items-center gap-2" >
-                                    <div class="form-check form-switch float-left custom-switch">
-                                        <input class="form-check-input" type="checkbox" id="is_active_{{$bout->id}}" name="is_active" {{ $bout->is_active === 'active' ? 'checked' : '' }} data-id="{{ $bout->id }}">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="form-check form-switch custom-switch">
+                                        <input
+                                            class="form-check-input toggle-active"
+                                            type="checkbox"
+                                            name="is_active"
+                                            data-id="{{ $bout->id }}"
+                                            {{ $bout->is_active === 'active' ? 'checked' : '' }}>
+                                        </div>
                                     </div>
-                                </div>
                                 </td>
                                 <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2">
@@ -61,40 +65,72 @@
         </div>
         <a href="/adminpanel/about/create" class="btn btn-elearning m-1 btn-custom">Tambah data</a>
     </div>
-        <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelectorAll(".toggle-active").forEach(toggle => {
-            toggle.addEventListener("change", function() {
-                let aboutId = this.dataset.id;  // Asumsi: data-id="${testimoni.id}" di HTML input
-                let is_active = this.checked ? 1 : 0;  // 1 untuk active (checked), 0 untuk inactive
+@endsection
 
-                fetch(`/adminpanel/about/toggle-active/${aboutId}`, {  // Perbaiki: Tambah backtick untuk template literal
-                    method: "POST",
-                    headers: {
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}",  // Pastikan ini di Blade template Laravel
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        is_active: is_active  // PERBAIKAN: Ganti dari 'status: status' menjadi 'is_active: is_active'
-                        // (sebelumnya 'status' undefined, sekarang konsisten dengan variabel)
-                    })
-                })
-                .then(res => res.json())
-                .then(data => {
-                    console.log("Status updated:", data);
-                    // Opsional: Tampilkan notifikasi sukses, misalnya alert(data.message);
-                    if (data.success) {
-                        // Update UI jika perlu, misalnya ubah teks label
-                    }
-                })
-                .catch(err => {
-                    console.error("Error:", err);
-                    // Opsional: Tampilkan error ke user, misalnya alert('Gagal update status');
-                    // Rollback checkbox jika error
-                    this.checked = !this.checked;
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).on('change', '.toggle-active', function() {
+    let aboutId = $(this).data('id');
+    let status = $(this).is(':checked') ? 'active' : 'no_active';
+
+    $.ajax({
+        url: "/adminpanel/about/toggle-active/" + aboutId,
+        type: "POST",
+        data: {
+            _token: "{{ csrf_token() }}",
+            is_active: status
+        },
+        success: function(response) {
+            if (response.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Status Updated',
+                    text: "Status: " + response.status,
+                    timer: 1500,
+                    showConfirmButton: false
                 });
-            });
-        });
+            }
+        },
+        error: function(xhr) {
+            Swal.fire('Error!', 'Gagal update status!', 'error');
+        }
     });
+});
+
+// Delete dengan SweetAlert2
+$(document).on('click', '.btn-delete', function(e) {
+    e.preventDefault();
+    let form = $(this).closest("form");
+    let name = $(this).data("name");
+
+    Swal.fire({
+        title: 'Yakin hapus?',
+        text: "Data partner \"" + name + "\" akan dihapus!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Hapus',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+    });
+});
+
+// Flash message sukses (dari session)
+@if(session('success'))
+Swal.fire({
+    icon: 'success',
+    title: 'Berhasil',
+    text: "{{ session('success') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+@endif
 </script>
+
 @endsection

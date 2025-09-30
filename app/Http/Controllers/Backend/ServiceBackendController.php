@@ -81,36 +81,36 @@ class ServiceBackendController extends Controller
     }
 
     public function update(Request $request, $id){
-        //validasi data
+        // Validasi
         $request->validate([
-            'photo'             => 'required |image|mimes:jpeg,png,jpg,gif',
-            'description'       => 'required',
-            'title'             => 'required',
+            'photo'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required|string',
+            'title'       => 'required|string|max:255',
         ]);
 
-        //cari apakah ada user di tabel yang akan di update cari berdasarkan id
-        $dataservis = Service::find($id);
+        // Cari data
+        $dataservis = Service::findOrFail($id);
 
-        //siapkan data yang akan disiampan sebagai update
+        // Data baru
         $dataservice_update = [
-            'description'      => $request->description,
-            'title'            => $request->title
+            'description' => $request->description,
+            'title'       => $request->title,
         ];
 
-        if ($request->hasFile('photo')){
-            //hapus file gambar sebelumnya
-            Storage::disk('public')->delete($dataservis->photo);
-
-            //upload gambar
+        // Kalau ada foto baru
+        if ($request->hasFile('photo')) {
+            if ($dataservis->photo) {
+                Storage::disk('public')->delete($dataservis->photo);
+            }
             $dataservice_update['photo'] = $request->file('photo')->store('imgservice', 'public');
         }
 
-        //simpan data ke dalam base dengan data yang terbaru sesuai update
+        // Simpan perubahan
         $dataservis->update($dataservice_update);
 
-        //simpan data ke halaman beranda
-        return redirect('/adminpanel/service');
+        return redirect('/adminpanel/service')->with('success', 'Service berhasil diupdate!');
     }
+
 
     public function toggleActive(Request $request, $id){
         $service = Service::findOrFail($id);

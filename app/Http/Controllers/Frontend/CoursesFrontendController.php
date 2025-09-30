@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Courses;
+use App\Models\PopularCourses;
 
 class CoursesFrontendController extends Controller
 {
@@ -12,7 +13,9 @@ class CoursesFrontendController extends Controller
         // Ambil data About yang aktif
             $activeCourses = Courses::where('is_active', 'active')->get();
 
+            $activePopularCourses = PopularCourses::where('is_active', 'active')->get();
+
         // Kirim ke view
-        return view('page.frontend.courses.index', compact('activeCourses'));
+        return view('page.frontend.courses.index', compact('activeCourses', 'activePopularCourses'));
     }
 }

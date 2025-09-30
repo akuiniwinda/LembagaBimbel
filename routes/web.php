@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Courses;
+use App\Models\PopularCourses;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\HeroBackendController;
 use App\Http\Controllers\Backend\AboutBackendController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Backend\ServiceBackendController;
 use App\Http\Controllers\Frontend\AboutFrontendController;
 use App\Http\Controllers\Frontend\GaleriFrontendController;
 use App\Http\Controllers\Backend\DashboardBackendController;
+use App\Http\Controllers\Backend\DashboardCoursesController;
 use App\Http\Controllers\Backend\TestimoniBackendController;
 use App\Http\Controllers\Frontend\ContactFrontendController;
 use App\Http\Controllers\Frontend\CoursesFrontendController;
@@ -24,6 +26,7 @@ use App\Http\Controllers\Backend\MediaSosialBackendController;
 use App\Http\Controllers\Backend\TenagaKerjaBackendController;
 use App\Http\Controllers\Frontend\TestimonialFrontendController;
 use App\Http\Controllers\Backend\AuthenticationBackendController;
+use App\Http\Controllers\Backend\PopulerCoursesBackendController;
 
 //Frontend
 //landingpage
@@ -50,6 +53,10 @@ Route::get('/service', [ServiceFrontendController::class, 'index']);
 
 // Galeri
 Route::get('/galeri', [GaleriFrontendController::class, 'index']);
+Route::get('/dataanalisis', [GaleriFrontendController::class, 'index1']);
+Route::get('/digitalmarketing', [GaleriFrontendController::class, 'index2']);
+Route::get('/desaingrafis', [GaleriFrontendController::class, 'index3']);
+Route::get('/programmer', [GaleriFrontendController::class, 'index3']);
 
 // Partners
 Route::get('/partners', [PartnersFrontendController::class, 'index']);
@@ -151,11 +158,21 @@ Route::get('/adminpanel/mediasosial/edit/{id}', [MediaSosialBackendController::c
 Route::post('/adminpanel/mediasosial/update/{id}', [MediaSosialBackendController::class, 'update']);
 Route::post('/adminpanel/mediasosial/toggle-active/{id}', [MediaSosialBackendController::class, 'toggleActive']);
 
-//courses
-Route::get('/adminpanel/courses', [CoursesBackendController::class, 'index']);
+// Route gabungan (2 tabel)
+Route::get('/adminpanel/courses', [DashboardCoursesController::class, 'index']);
+
+// CRUD Courses
 Route::get('/adminpanel/courses/create', [CoursesBackendController::class,'create']);
 Route::post('/adminpanel/courses/store', [CoursesBackendController::class,'store']);
 Route::get('/adminpanel/courses/delete/{id}', [CoursesBackendController::class, 'destroy']);
 Route::get('/adminpanel/courses/edit/{id}', [CoursesBackendController::class,'edit']);
 Route::post('/adminpanel/courses/update/{id}', [CoursesBackendController::class, 'update']);
 Route::post('/adminpanel/courses/toggle-active/{id}', [CoursesBackendController::class, 'toggleActive']);
+
+// CRUD PopularCourses
+Route::get('/adminpanel/popularcourses/create', [PopulerCoursesBackendController::class,'create']);
+Route::post('/adminpanel/popularcourses/store', [PopulerCoursesBackendController::class,'store']);
+Route::get('/adminpanel/popularcourses/delete/{id}', [PopulerCoursesBackendController::class, 'destroy']);
+Route::get('/adminpanel/popularcourses/edit/{id}', [PopulerCoursesBackendController::class,'edit']);
+Route::post('/adminpanel/popularcourses/update/{id}', [PopulerCoursesBackendController::class, 'update']);
+

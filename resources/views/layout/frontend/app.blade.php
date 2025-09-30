@@ -30,6 +30,16 @@
 
     <!-- Template Stylesheet -->
     <link href="{{asset('assetsfrontend/css/style.css')}}" rel="stylesheet">
+
+    <style>
+        .star-rating .star {
+    color: gold;
+    font-size: 1.2rem;
+    margin: 0 1px;
+    }
+    </style>
+
+    @yield('style')
 </head>
 
 <body>
@@ -47,6 +57,10 @@
     <!-- Navbar End -->
 
     @yield('content')
+
+    {{-- tempat script tambahan per halaman --}}
+    @yield('scripts')
+
 
     <!-- Footer Start -->
     @include('layout.frontend.footer')
