@@ -45,7 +45,19 @@
                                     <h6 class="fw-semibold mb-1">{{$testimonal->description}}</h6>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-1">{{$testimonal->rating}}</h6>
+                                    @php
+                                        $rating = round($testimonal->rating); // bulatkan ke angka terdekat
+                                    @endphp
+
+                                    <h6 class="fw-semibold mb-1 star-rating">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= $rating)
+                                                ★
+                                            @else
+                                                ☆
+                                            @endif
+                                        @endfor
+                                    </h6>
                                 </td>
                                 <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2" >

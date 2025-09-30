@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('testimonis', function (Blueprint $table) {
+        Schema::create('popular_courses', function (Blueprint $table) {
             $table->id();
-            $table->string('photo_profile');
+            $table->string('photo');
+            $table->string('title');
+            $table->string('harga');
             $table->string('name');
-            $table->text('description');
-            $table->float('rating');
+            $table->string('time');
+            $table->string('student');
             $table->enum('is_active', ['active', 'no_active']);
             $table->timestamps();
         });
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('testimonis');
+        Schema::dropIfExists('popular_courses');
     }
 };

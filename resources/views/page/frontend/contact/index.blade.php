@@ -2,9 +2,18 @@
 @section('content')
     <div class="container-fluid">
         <div class="container-fluid">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Contact Us</h6>
+                <h1 class="mb-5">Hubungi Kami Untuk Info Lebih Lanjut</h1>
+                @if(session('success'))
+                    <div class="alert alert-success text-center">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+            </div>
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title fw-semibold mb-4">Isi form di bawah ini untuk mendaftar atau mendapatkan informasi lebih lanjut tentang program bimbingan belajar kami. Tim kami akan segera menghubungi anda</h5>
               <div class="card">
                 <div class="card-body">
                   <form action="/adminpanel/contact/store" method="POST" enctype="multipart/form-data">
@@ -40,7 +49,7 @@
 	                        <small style="color:red">{{$message}}</small>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-custom">Simpan</button>
+                    <button type="submit" class="btn btn-custom" align="center">Simpan</button>
                   </form>
                 </div>
               </div>

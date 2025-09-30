@@ -28,7 +28,7 @@ class AboutBackendController extends Controller
 
         $databout_store = [
             'description'       => $request->description,
-            'is_active'         => $request->has('status') ? 'active' : 'no_active',
+            'is_active'         => true
         ];
 
         //upload foto
@@ -110,14 +110,25 @@ class AboutBackendController extends Controller
         return redirect('/adminpanel/about');
     }
 
+    // app/Http/Controllers/BoutController.php
     public function toggleActive(Request $request, $id){
-        $about = About::findOrFail($id);
-        $about->is_active = $request->is_active == 1 ? 'active' : 'inactive';
-        $about->save();
+    $about = About::findOrFail($id);
 
-        return response()->json([
-            'success'   => true,
-            'is_active' => $about->is_active
-        ]);
-    }
+    $request->validate([
+        'is_active' => 'required|in:active,no_active',
+    ]);
+
+    $about->update([
+        'is_active' => $request->is_active,
+    ]);
+
+    return response()->json([
+        'success' => true,
+        'id' => $about->id,
+        'status' => $request->is_active,
+    ]);
+}
+
+
+
 }

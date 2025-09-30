@@ -14,7 +14,7 @@
                     <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
                     <h1 class="mb-4">Welcome to eLEARNING</h1>
                     <p class="mb-4">{{ $activeAbout->description }}</p>
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="/about">Read More</a>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="/">Kembali</a>
                 </div>
             </div>
             @endif

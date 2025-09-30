@@ -24,7 +24,7 @@ class TestimoniBackendController extends Controller
             'photo_profile'     => 'required|image|mimes:jpeg,png,jpg,gif',
             'name'              => 'required',
             'description'       => 'required',
-            'rating'            => 'required|numeric|between:0,5'
+            'rating'            => 'required|integer|min:1|max:5',
         ]);
 
         $datauser_store = [
@@ -88,7 +88,7 @@ class TestimoniBackendController extends Controller
             'photo_profile'             => 'required |image|mimes:jpeg,png,jpg,gif',
             'name'              => 'required',
             'description'       => 'required',
-            'rating'            => 'required|numberic|between:0,5'
+            'rating'            => 'required|integer|min:1|max:5',
         ]);
 
         //cari apakah ada user di tabel yang akan di update cari berdasarkan id

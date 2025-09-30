@@ -80,5 +80,27 @@
             border-color: #06bacb !important;
         }
 
+.rating {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+.rating > input {
+    display: none;
+}
+.rating > label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+}
+.rating > input:checked ~ label,
+.rating > label:hover,
+.rating > label:hover ~ label {
+    color: gold;
+}
+
+.star-rating {
+        color: gold;
+        font-size: 1.2rem;
+    }
 </style>
 
